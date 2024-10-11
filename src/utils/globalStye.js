@@ -102,6 +102,24 @@ h6 {
 h1 {
     font-size: ${props => props.xl || props.theme.font.size.h1.xl};
     line-height: ${props => props.lineHeight || props.theme.font.lineH.h1.xl};
+    ${media.lessThan("huge")`
+    line-height: ${theme.font.lineH.h1.l};
+    font-size: ${theme.font.size.h1.l};
+  `}
+    ${media.lessThan("large")`
+    line-height: ${theme.font.lineH.h1.m};
+    font-size: ${theme.font.size.h1.m};
+  `}
+
+  ${media.lessThan("medium")`
+  line-height: ${theme.font.lineH.h1.s};
+  font-size: ${theme.font.size.h1.s};
+  `}
+
+  ${media.lessThan("small")`
+  line-height: ${theme.font.lineH.h1.xs};
+  font-size: ${theme.font.size.h1.sx};
+  `}
 }
 
 h2 {

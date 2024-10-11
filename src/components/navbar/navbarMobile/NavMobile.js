@@ -12,28 +12,23 @@ const ItemWrapper = styled.div`
   background-color: ${({ theme }) => theme.color.white};
   z-index: 100;
   transition: all 0.3s ease-in-out;
-  ${media.lessThan("small")`
+
+  ${media.greaterThan("medium")`
     display: none;
   `}
 
   a {
     color: ${({ theme }) => theme.color.font};
-    //background-color: ${({ theme }) => theme.color.baseLight};
     text-align: left;
     font-size: 20px;
     padding: 1rem 1rem 1rem 1rem;
     transition: all 0.5s;
     border-style: none;
 
-    :hover,
+    &:hover,
     &.active {
-      background-color: ${({ theme }) => theme.color.grey8};
+      background-color: ${({ theme }) => theme.color.baseLight};
       color: ${({ theme }) => theme.color.font};
-    }
-
-    :first-child {
-      padding: 0;
-      margin-bottom: 0;
     }
   }
 `
@@ -41,7 +36,6 @@ const ItemWrapper = styled.div`
 const NavMobile = props => {
   return (
     <ItemWrapper top={props.top} opacity={props.opacity}>
-      <LogoMobile position="relative" click />
       {props.children}
     </ItemWrapper>
   )

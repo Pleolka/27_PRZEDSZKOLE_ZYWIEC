@@ -63,9 +63,8 @@ const NavbarWrapper = styled(Container)`
 `
 
 const NavbarMobileWrapper = styled.div`
-  background-color: #8f6464;
+  background-color: ${theme.color.base};
   height: ${`${navbarMobileHeight}px`};
-  border-bottom: 1px solid black;
   ${media.greaterThan("medium")`
     display: none;
   `}
@@ -101,13 +100,13 @@ const NavbarItem = styled(Link)`
   &:hover {
     color: ${({ theme }) => theme.color.base};
 
-    ${media.lessThan("small")`
+    ${media.lessThan("medium")`
         border-bottom: none;
         color: ${({ theme }) => theme.color.base} !important;
   `}
   }
 
-  ${media.lessThan("small")`
+  ${media.lessThan("medium")`
     font-size: 16px !important;
     padding: 0 0.5rem;
     border-bottom: none;
@@ -120,10 +119,18 @@ const NavbarItem = styled(Link)`
   }
 `
 
-const Logo = styled(Link)`
-  margin-top: -80px;
-  margin-bottom: -120px;
-  min-width: 150px;
+const NavMolileText = styled.div`
+  height: ${`${navbarMobileHeight}px`};
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  h6 {
+    color: ${theme.color.white};
+    font-family: ${theme.font.special};
+    font-weight: 300;
+  }
 `
 
 function Navbar() {
@@ -194,9 +201,6 @@ function Navbar() {
       </Nav>
 
       <NavbarMobileWrapper>
-        {/*LOGO MOBILNE*/}
-        <LogoMobile click={click} />
-
         {/*MENU MOBILNE*/}
         {/* <motion.div
                 animate={this.state.clicked ? "open" : "closed"}
@@ -212,7 +216,13 @@ function Navbar() {
             {menu}
           </NavMobile>
         ) : (
-          <NavMobile></NavMobile>
+          <>
+            <NavMolileText>
+              <h6>Przedszkole Soóstr Serafitek</h6>
+            </NavMolileText>
+
+            <NavMobile></NavMobile>
+          </>
         )}
 
         {/*IKONKA HAMBURGER MENU POJAWIAJĄCE SIĘ TYLKO NA MOBILNYCH*/}

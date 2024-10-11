@@ -15,7 +15,7 @@ const Icon = styled.button`
   width: 36px;
 
   font-size: 20px;
-  color: ${({ theme }) => theme.color.base1};
+  color: ${({ theme }) => theme.color.white};
 
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid white;
@@ -24,16 +24,20 @@ const Icon = styled.button`
   z-index: 200;
   cursor: pointer;
 
+  svg {
+    fill: ${({ theme }) => theme.color.baseLight};
+  }
+
   :hover {
     background-color: rgba(2, 2, 2, 0);
-    color: ${({ theme }) => theme.color.grey5};
+    color: ${({ theme }) => theme.color.baseLight};
   }
 
   :focus {
     border: 1px solid white;
   }
 
-  ${media.lessThan("medium")`
+  ${media.greaterThan("medium")`
     display: none;
   `}
 `

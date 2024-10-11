@@ -107,7 +107,7 @@ export const Heading = styled.div`
     margin-top: 1rem;
     font-weight: 100;
     max-width: 500px;
-    font-size: 18px;
+    //font-size: 18px;
   }
 
   ${media.lessThan("large")`

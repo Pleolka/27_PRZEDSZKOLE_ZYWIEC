@@ -14,7 +14,7 @@ const Stopka = styled.div`
   p {
     color: ${({ theme }) => theme.color.baseLight};
     opacity: 0.3;
-    font-size: 18px;
+    //font-size: 18px;
     line-height: 1;
   }
 

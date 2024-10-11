@@ -26,11 +26,11 @@ export const theme = {
 
     size: {
       p: {
-        xs: "18px",
-        s: "20px",
-        m: "22px",
-        l: "22px",
-        xl: "24px",
+        xs: "16px",
+        s: "16px",
+        m: "18px",
+        l: "20px",
+        xl: "22px",
       },
 
       l: {
@@ -42,9 +42,9 @@ export const theme = {
       },
 
       h1: {
-        xs: "32px",
-        s: "42px",
-        m: "44px",
+        xs: "28px",
+        s: "36px",
+        m: "40px",
         l: "46px",
         xl: "48px",
       },

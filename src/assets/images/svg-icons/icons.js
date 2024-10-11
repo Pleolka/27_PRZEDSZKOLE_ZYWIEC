@@ -7,10 +7,6 @@ const Icon = styled.svg`
   position: absolute;
   margin: 0 auto;
   transform: scale(0.5);
-
-  path {
-    fill: #961c1c;
-  }
 `
 
 export const Arrow = () => {

@@ -5,7 +5,6 @@ import { media } from "../../utils/mediaquery"
 import { StaticImage } from "gatsby-plugin-image"
 
 const NavbarInfo = styled.div`
-  //z-index: -20;
   position: relative;
   margin-bottom: 0px;
 
@@ -21,6 +20,11 @@ const NavbarInfo = styled.div`
     top: 20px;
     font-size: 34px;
   }
+
+  ${media.lessThan("medium")`
+        display: none;
+     
+  `}
 `
 
 const NavbarHeader = () => {
