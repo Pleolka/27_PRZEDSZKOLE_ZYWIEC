@@ -22,14 +22,14 @@ const colorVar = {
 
 export const color = {
   font: "rgba(0, 0, 0, .80)",
-  heading: "#2F9BA6",
+  heading: "#35A6B4",
   white: "rgba(255, 255, 255, 1)",
 
-  base: "#2F9BA6",
+  base: "#35A6B4",
   baseLight: "#CFF1F3",
   baseDark: "#00375c",
 
-  secondary: "#2F9BA6",
+  secondary: "#35A6B4",
   secondaryLight: "",
   secondaryDark: "",
 

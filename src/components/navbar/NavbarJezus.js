@@ -55,6 +55,7 @@ const NavbarJezus = props => {
         alt="Cloud"
         layout="fullWidth"
         quality={100}
+        placeholder="blurred"
       />
     </NavbarInfo>
   )

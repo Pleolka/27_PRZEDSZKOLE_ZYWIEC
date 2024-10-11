@@ -23,7 +23,7 @@ const NavbarInfo = styled.div`
   }
 `
 
-const NavbarHeader = props => {
+const NavbarHeader = () => {
   return (
     <NavbarInfo>
       <p>Przedszkole sióstr serafitek w Żywcu</p>
@@ -32,6 +32,7 @@ const NavbarHeader = props => {
         alt="Cloud"
         layout="fullWidth"
         quality={100}
+        placeholder="blurred"
       />
     </NavbarInfo>
   )

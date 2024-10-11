@@ -3,17 +3,18 @@ import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import { ContainerMob } from "./../../../utils/utils"
+import { theme } from "../../../utils/theme"
 
 const Stopka = styled.div`
   padding-bottom: 1rem;
   text-align: center;
-  background-color: ${props => props.bgColor || props.theme.color.prim1};
+  background-color: ${theme.color.base};
 
   a,
   p {
-    color: ${({ theme }) => theme.color.font};
+    color: ${({ theme }) => theme.color.baseLight};
     opacity: 0.3;
-    font-weight: 300;
+    font-size: 18px;
     line-height: 1;
   }
 
@@ -43,16 +44,16 @@ const Stopka = styled.div`
   hr {
     margin-bottom: 1rem;
     margin-top: 0;
-    opacity: ${props => props.hrOpacity || 0.8};
+    opacity: 0.3;
     border: 0;
     height: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid ${theme.color.baseLight};
   }
 `
 
 const FooterIks = props => {
   return (
-    <Stopka bgColor={props.bgColor} hrOpacity={props.hrOpacity}>
+    <Stopka>
       <ContainerMob>
         <hr />
       </ContainerMob>
@@ -65,7 +66,7 @@ const FooterIks = props => {
 
       <a href="https://iksdesign.pl/" target="blank">
         <StaticImage
-          src="../../../assets/images/logo/logo_iks.png"
+          src="../../../assets/images/logo/logo_white_iks.png"
           alt="Logo"
           placeholder="blurred"
           layout="fixed"

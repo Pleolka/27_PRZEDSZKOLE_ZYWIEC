@@ -30,14 +30,8 @@ const Layout = props => {
         <Cookie />
         
         */}
-        <FooterHeader
-          heading={footer.heading}
-          subHeading={footer.subHeading}
-          bgColor={theme.color.sec8}
-          hrOpacity="1"
-        />
+        <FooterHeader />
         <Footer
-          bgColor={theme.color.sec8}
           tel={info.tel}
           email={info.mail}
           ulica={info.ulica}
@@ -49,7 +43,7 @@ const Layout = props => {
           fb={info.fb}
           insta={info.insta}
         />
-        <FooterIks bgColor={theme.color.sec8} />
+        <FooterIks />
       </div>
     </ThemeProvider>
   )

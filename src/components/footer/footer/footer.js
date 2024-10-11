@@ -6,23 +6,20 @@ import { list } from "../../../assets/data/pageStructure"
 //STYLES
 import { media } from "../../../utils/mediaquery"
 import { CardWrapperMob, ContainerMob } from "../../../utils/utils"
+import { theme } from "../../../utils/theme"
 //COMPONENTS
 
 const Foot = styled.footer`
-  background-color: ${props => props.bgColor || props.theme.color.prim1};
+  background-color: ${theme.color.base};
 `
 
 const FooterWrapper = styled(ContainerMob)`
-  border-top: ${props => props.borderTop || "1px"}
-    ${props => props.theme.color.sec7} solid;
-  border-bottom: ${props => props.borderBottom || "1px"}
-    ${props => props.theme.color.sec7} solid;
   margin: 0 auto;
   padding-top: 2rem;
 
   p,
   a {
-    color: ${({ theme }) => theme.color.sec4};
+    color: ${({ theme }) => theme.color.baseLight};
   }
 
   a {
@@ -50,7 +47,7 @@ const FooterKontakt = styled.div`
 
     :hover {
       font-weight: 900;
-      color: ${({ theme }) => theme.color.sec9};
+      color: ${({ theme }) => theme.color.secondaryDark};
     }
   }
   div {
@@ -84,13 +81,12 @@ const FooterLinki = styled.ul`
     cursor: pointer;
     :hover {
       font-weight: 500;
-      color: ${({ theme }) => theme.color.sec9};
+      color: ${({ theme }) => theme.color.secondaryDark};
     }
   }
 `
 
 const Footer = ({
-  bgColor,
   tel,
   email,
   ulica,
@@ -101,8 +97,6 @@ const Footer = ({
   kraj,
   fb,
   insta,
-  borderTop,
-  borderBottom,
 }) => {
   const menu = list.map(item => (
     <li key={item.name}>
@@ -113,9 +107,9 @@ const Footer = ({
   ))
 
   return (
-    <Foot bgColor={bgColor} id="footer">
-      <FooterWrapper borderTop={borderTop} borderBottom={borderBottom}>
-        <CardWrapperMob xl="3" l="3" m="3" mb="0" pb="2rem">
+    <Foot id="footer">
+      <FooterWrapper>
+        <CardWrapperMob xl="3" l="3" m="3" s="1" mb="0" pb="2rem">
           <FooterAdres>
             <p>Adres</p>
             <p>
