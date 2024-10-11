@@ -117,4 +117,8 @@ export const Heading = styled.div`
   ${media.lessThan("medium")`
   margin-top: 80px;
   `}
+
+  ${media.lessThan("small")`
+  margin-top: 50px;
+  `}
 `

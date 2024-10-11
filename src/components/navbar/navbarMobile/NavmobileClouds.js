@@ -4,12 +4,14 @@ import { StaticImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import { media } from "../../../utils/mediaquery"
 import { property } from "lodash"
+import { theme } from "../../../utils/theme"
 
 const ImageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   transform: rotate(180deg);
+  background-color: ${theme.color.base};
 
   ${media.greaterThan("medium")`
     display: none;
