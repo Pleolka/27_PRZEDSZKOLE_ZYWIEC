@@ -115,6 +115,6 @@ export const Heading = styled.div`
   `}
 
   ${media.lessThan("medium")`
-  //margin-top: 0px;
+  margin-top: 80px;
   `}
 `

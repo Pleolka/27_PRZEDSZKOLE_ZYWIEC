@@ -5,46 +5,28 @@ import styled from "styled-components"
 import { media } from "../../../utils/mediaquery"
 import { property } from "lodash"
 
-const Logo = styled(Link)`
+const ImageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: ${props => props.position || "absolute"};
-  height: 50px;
-  z-index: 150;
-  margin-bottom: 0;
-  > div {
-    margin: 0.5rem;
-    margin-left: 1rem;
-    height: 100%;
-  }
+  transform: rotate(180deg);
 
-  ${media.lessThan("small")`
+  ${media.greaterThan("medium")`
     display: none;
   `}
 `
 
-const LogoMobile = props => {
+const NavmobileClouds = props => {
   return (
-    <Logo to="/" position={props.position}>
-      {property.navbarScroll || props.click ? (
-        <StaticImage
-          src="../../../assets/images/logo/logo.png"
-          alt="Logo="
-          placeholder="blurred"
-          layout="fixed"
-          height={28}
-        />
-      ) : (
-        <StaticImage
-          src="../../../assets/images/logo/logo_white.png"
-          alt="Logo="
-          placeholder="blurred"
-          layout="fixed"
-          height={28}
-        />
-      )}
-    </Logo>
+    <ImageWrapper>
+      <StaticImage
+        src="../../../assets/images/chmury-footer.svg"
+        alt="Cloud"
+        layout="fullWidth"
+        quality={100}
+        placeholder="blurred"
+      />
+    </ImageWrapper>
   )
 }
-export default LogoMobile
+export default NavmobileClouds

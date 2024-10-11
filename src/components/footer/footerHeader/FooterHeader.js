@@ -5,7 +5,7 @@ import { Container } from "../../../utils/utils"
 
 const FooterHeaderWrapper = styled.div`
   margin-top: 20rem;
-  margin-bottom: -5rem;
+  //margin-bottom: -5rem;
   h3,
   p {
     color: ${props => props.theme.color.font};

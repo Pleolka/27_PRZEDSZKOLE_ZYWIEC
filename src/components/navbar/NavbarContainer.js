@@ -12,6 +12,7 @@ import { Container, ContainerMob } from "../../utils/utils"
 import NavMobile from "./navbarMobile/NavMobile"
 import HamburgerMenuIcon from "./navbarMobile/HamburgerMenuIcon"
 import LogoMobile from "./navbarMobile/LogoMobile"
+import NavmobileClouds from "./navbarMobile/NavmobileClouds"
 
 const navbarItemCount = Object.keys(list).length
 const navbarHeight = 60
@@ -227,6 +228,7 @@ function Navbar() {
 
         {/*IKONKA HAMBURGER MENU POJAWIAJĄCE SIĘ TYLKO NA MOBILNYCH*/}
         <HamburgerMenuIcon onClick={handleClick} clicked={click} />
+        <NavmobileClouds />
       </NavbarMobileWrapper>
     </>
   )
