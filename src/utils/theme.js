@@ -14,9 +14,9 @@ export const theme = {
   // },
 
   font: {
-    main: "Yantramanav",
-    header: "Ubuntu",
-    special: "Ubuntu",
+    main: "Afacad Flux",
+    header: "Afacad Flux",
+    special: "Pacifico",
 
     weight: 300,
     weightBold: 700,

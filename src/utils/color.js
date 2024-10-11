@@ -22,7 +22,7 @@ const colorVar = {
 
 export const color = {
   font: "rgba(0, 0, 0, .80)",
-  heading: "rgba(0, 0, 0, .80)",
+  heading: "#0d5880cc",
   white: "rgba(255, 255, 255, 1)",
 
   grey1: `hsl(${colorVar.hueGrey}, 0%, 10%)`,

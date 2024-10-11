@@ -17,7 +17,7 @@ export const list = [
   },
   {
     name: "Rekrutacja",
-    path: "/rekrytacja",
+    path: "/rekrutacja",
   },
   {
     name: "Dla Rodziców",
