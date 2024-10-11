@@ -14,8 +14,8 @@ export const theme = {
   // },
 
   font: {
-    main: "Afacad Flux",
-    header: "Afacad Flux",
+    main: "Yaldevi",
+    header: "Yaldevi",
     special: "Pacifico",
 
     weight: 300,

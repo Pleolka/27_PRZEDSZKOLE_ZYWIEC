@@ -1,4 +1,6 @@
 import { createGlobalStyle } from "styled-components"
+import { theme } from "./theme"
+import { media } from "./mediaquery"
 
 export const GlobalStyle = createGlobalStyle`
 *,
@@ -40,11 +42,29 @@ p {
 }
 
 p, a {
-    color: ${({ theme }) => theme.color.font};
-    font-family: ${({ theme }) => theme.font.main};
-    font-weight: ${props => props.weight || props.theme.font.weight};
-    font-size: ${props => props.xl || props.theme.font.size.p.xl};
-    line-height: ${props => props.lineHeight || props.theme.font.lineH.p.xl};
+    color: ${theme.color.font};
+    font-family: ${theme.font.main};
+    font-weight: ${theme.font.weight};
+    font-size: ${theme.font.size.p.xl};
+    line-height: ${theme.font.lineH.p.xl};
+    ${media.lessThan("huge")`
+    line-height: ${theme.font.lineH.p.l};
+    font-size: ${theme.font.size.p.l};
+  `}
+    ${media.lessThan("large")`
+    line-height: ${theme.font.lineH.p.m};
+    font-size: ${theme.font.size.p.m};
+  `}
+
+  ${media.lessThan("medium")`
+  line-height: ${theme.font.lineH.p.s};
+  font-size: ${theme.font.size.p.s};
+  `}
+
+  ${media.lessThan("small")`
+  line-height: ${theme.font.lineH.p.xs};
+  font-size: ${theme.font.size.p.sx};
+  `}
 }
 
 sub,

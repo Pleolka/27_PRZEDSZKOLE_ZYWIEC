@@ -5,9 +5,33 @@ import { media } from "../../utils/mediaquery"
 import { StaticImage } from "gatsby-plugin-image"
 
 const NavbarInfo = styled.div`
-  //z-index: -20;
   position: relative;
   margin-bottom: 0px;
+  display: flex;
+  justify-content: center;
+
+  > div {
+    width: 250px;
+    margin-top: -90px;
+
+    ${media.lessThan("huge")`
+    width: 250px;
+    margin-top: -290px;
+  `}
+
+    ${media.lessThan("large")`
+    width: 180px;
+    margin-top: -180px;
+  `}
+
+  ${media.lessThan("medium")`
+    display: none;
+  `}
+
+  ${media.lessThan("small")`
+    display: none;
+  `}
+  }
 
   p {
     text-align: center;
@@ -23,12 +47,11 @@ const NavbarInfo = styled.div`
   }
 `
 
-const NavbarHeader = props => {
+const NavbarJezus = props => {
   return (
     <NavbarInfo>
-      <p>Przedszkole sióstr serafitek w Żywcu</p>
       <StaticImage
-        src="../../assets/images/chmury-navbar.svg"
+        src="../../assets/images/logo/logo.png"
         alt="Cloud"
         layout="fullWidth"
         quality={100}
@@ -36,4 +59,4 @@ const NavbarHeader = props => {
     </NavbarInfo>
   )
 }
-export default NavbarHeader
+export default NavbarJezus

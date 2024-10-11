@@ -6,6 +6,7 @@ import { media } from "../../utils/mediaquery"
 //DATA
 import { list } from "../../assets/data/pageStructure"
 //STYLED
+import { theme } from "../../utils/theme"
 import { Container, ContainerMob } from "../../utils/utils"
 //COMPONENTS
 import NavMobile from "./navbarMobile/NavMobile"
@@ -18,7 +19,8 @@ const navbarMobileHeight = 50
 
 const Nav = styled.nav`
   position: sticky;
-  top: 0;
+  margin-top: -640px;
+  top: 80px;
   z-index: 20;
   height: ${`${navbarHeight}px`};
   width: 100%;
@@ -30,14 +32,29 @@ const Nav = styled.nav`
   &.top {
   }
 
+  ${media.lessThan("huge")`
+  margin-top: -430px;
+  margin-bottom: 300px;
+  `}
+
+  ${media.lessThan("large")`
+  margin-top: -400px;
+  margin-bottom: 280px;
+  `}
+
   ${media.lessThan("medium")`
+  display: none;
+  `}
+
+  ${media.lessThan("small")`
     display: none;
   `}
 `
 
 const NavbarWrapper = styled(Container)`
-  display: flex;
-  justify-content: space-around;
+  height: ${`${navbarMobileHeight}px`};
+  display: grid;
+  grid-template-columns: 1fr;
   background-color: #ffffff;
   border-radius: calc(0.5 * ${`${navbarHeight}px`});
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
@@ -55,9 +72,15 @@ const NavbarMobileWrapper = styled.div`
 `
 
 const NavbarItemWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(${navbarItemCount}, minmax(115px, 1fr));
+  //display: grid;
+  //grid-template-columns: repeat(${navbarItemCount}, minmax(115px, 1fr));
+  //column-gap: 0.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-content: space-around;
+  justify-items: space-around;
   justify-self: center;
+  margin-right: 3rem;
 `
 
 const NavbarItem = styled(Link)`
@@ -66,22 +89,21 @@ const NavbarItem = styled(Link)`
   display: grid;
   align-items: center;
   width: 100%;
-  white-space: pre-wrap;
+  white-space: nowrap;
   background-color: transparent;
   font-size: 20px;
-  font-family: "Ubuntu";
-  font-weight: 400;
+  font-family: ${theme.font.header};
+  font-weight: 700;
   line-height: 1.1;
   transition: all 0.5s ease-in-out;
 
   &.active,
   &:hover {
-    color: ${({ theme }) => theme.color.base1};
-    font-weight: 500;
+    color: ${({ theme }) => theme.color.base};
 
     ${media.lessThan("small")`
         border-bottom: none;
-        color: ${({ theme }) => theme.color.base1} !important;
+        color: ${({ theme }) => theme.color.base} !important;
   `}
   }
 
@@ -99,15 +121,9 @@ const NavbarItem = styled(Link)`
 `
 
 const Logo = styled(Link)`
-  padding: 0.7rem 0 0.7rem 0;
-  display: flex;
-  height: ${`${navbarHeight}px`};
-  div {
-    height: 100% !important;
-  }
-  p {
-    line-height: ${`${navbarHeight}px`};
-  }
+  margin-top: -80px;
+  margin-bottom: -120px;
+  min-width: 150px;
 `
 
 function Navbar() {
@@ -161,16 +177,16 @@ function Navbar() {
       >
         <ContainerMob>
           <NavbarWrapper>
-            <Logo to="/">
+            {/* <Logo to="/">
               <StaticImage
                 src="../../assets/images/logo/logo.png"
                 alt="Logo"
                 layout="constrained"
                 objectFit="contain"
                 placeholder="blurred"
-                height={50}
+                height={260}
               />
-            </Logo>
+            </Logo> */}
 
             <NavbarItemWrapper>{menu}</NavbarItemWrapper>
           </NavbarWrapper>

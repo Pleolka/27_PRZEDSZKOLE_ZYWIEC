@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { media } from "./mediaquery"
+import { theme } from "./theme"
 
 export const ImageGallery = styled.div`
   display: grid;
@@ -85,5 +86,35 @@ export const CardWrapperMob = styled(ContainerMob)`
 
   ${media.lessThan("small")`
     grid-template-columns: repeat(${props => props.s || 2}, 1fr);
+  `}
+`
+
+export const Heading = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+
+  h1,
+  p {
+    text-align: center;
+  }
+  h1 {
+    font-family: ${theme.font.special};
+    font-weight: 300;
+  }
+  p {
+    margin-top: 1rem;
+    font-weight: 100;
+    max-width: 500px;
+    font-size: 18px;
+  }
+
+  ${media.lessThan("large")`
+  //margin-top: 340px;
+  `}
+
+  ${media.lessThan("medium")`
+  //margin-top: 0px;
   `}
 `

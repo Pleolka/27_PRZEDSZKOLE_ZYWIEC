@@ -14,6 +14,7 @@ import Footer from "../components/footer/footer/footer"
 import FooterHeader from "../components/footer/footerHeader/FooterHeader"
 import FooterIks from "../components/footer/footerIks/FooterIks"
 import NavbarHeader from "../components/navbar/NavbarHeader"
+import NavbarJezus from "../components/navbar/NavbarJezus"
 
 const Layout = props => {
   return (
@@ -22,6 +23,7 @@ const Layout = props => {
       <div>
         <NavbarHeader />
         <Navbar />
+        <NavbarJezus />
         <div>{props.children}</div>
         {/* 
         

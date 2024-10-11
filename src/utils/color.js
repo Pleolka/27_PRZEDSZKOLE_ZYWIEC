@@ -22,8 +22,16 @@ const colorVar = {
 
 export const color = {
   font: "rgba(0, 0, 0, .80)",
-  heading: "#0d5880cc",
+  heading: "#2F9BA6",
   white: "rgba(255, 255, 255, 1)",
+
+  base: "#2F9BA6",
+  baseLight: "#CFF1F3",
+  baseDark: "#00375c",
+
+  secondary: "#2F9BA6",
+  secondaryLight: "",
+  secondaryDark: "",
 
   grey1: `hsl(${colorVar.hueGrey}, 0%, 10%)`,
   grey2: `hsl(${colorVar.hueGrey}, 0%, 20%)`,
