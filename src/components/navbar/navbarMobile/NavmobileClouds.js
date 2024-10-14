@@ -11,7 +11,12 @@ const ImageWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   transform: rotate(180deg);
-  background-color: ${theme.color.base};
+  background: rgb(51, 165, 179);
+  background: linear-gradient(
+    0deg,
+    rgba(51, 165, 179, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
 
   ${media.greaterThan("medium")`
     display: none;

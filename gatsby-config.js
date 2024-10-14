@@ -136,21 +136,21 @@ npm install gatsby-plugin-google-fonts --save
    npm install gatsby-transformer-remark
    npm install remark-grid-tables
    */
-    // {
-    //   resolve: "gatsby-transformer-remark",
-    //   options: {
-    //     // CommonMark mode (default: true)
-    //     commonmark: true,
-    //     // Footnotes mode (default: true)
-    //     footnotes: true,
-    //     // Pedantic mode (default: true)
-    //     pedantic: true,
-    //     // GitHub Flavored Markdown mode (default: true)
-    //     gfm: true,
-    //     // Plugins configs
-    //     plugins: [],
-    //   },
-    // },
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        // CommonMark mode (default: true)
+        commonmark: true,
+        // Footnotes mode (default: true)
+        footnotes: true,
+        // Pedantic mode (default: true)
+        pedantic: true,
+        // GitHub Flavored Markdown mode (default: true)
+        gfm: true,
+        // Plugins configs
+        plugins: [],
+      },
+    },
 
     /* COOKIE
    npm install --save gatsby-plugin-gdpr-cookies

@@ -5,23 +5,21 @@ import { media } from "../../utils/mediaquery"
 import { StaticImage } from "gatsby-plugin-image"
 
 const NavbarInfo = styled.div`
-  position: relative;
-  margin-bottom: 0px;
   display: flex;
   justify-content: center;
 
   > div {
-    width: 250px;
-    margin-top: -90px;
+    position: absolute;
+    top: 140px;
+    width: 400px;
 
     ${media.lessThan("huge")`
+    //top: 140px;
     width: 250px;
-    margin-top: -290px;
   `}
 
     ${media.lessThan("large")`
     width: 180px;
-    margin-top: -180px;
   `}
 
   ${media.lessThan("medium")`
@@ -32,22 +30,9 @@ const NavbarInfo = styled.div`
     display: none;
   `}
   }
-
-  p {
-    text-align: center;
-    font-family: ${theme.font.special};
-    z-index: 10;
-    position: absolute;
-    color: ${theme.color.white};
-    text-align: center;
-    left: 0;
-    right: 0;
-    top: 20px;
-    font-size: 34px;
-  }
 `
 
-const NavbarJezus = props => {
+const NavbarJezus = () => {
   return (
     <NavbarInfo>
       <StaticImage

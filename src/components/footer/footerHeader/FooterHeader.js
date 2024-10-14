@@ -5,8 +5,13 @@ import { Container } from "../../../utils/utils"
 import { theme } from "../../../utils/theme"
 
 const FooterHeaderWrapper = styled.div`
-  margin-top: 20rem;
-  background-color: ${theme.color.base};
+  margin-top: 3rem;
+  background: rgb(51, 165, 179);
+  background: linear-gradient(
+    180deg,
+    rgba(51, 165, 179, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
   h3,
   p {
     color: ${props => props.theme.color.font};

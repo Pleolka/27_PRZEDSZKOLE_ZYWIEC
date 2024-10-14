@@ -1,8 +1,9 @@
 import React from "react"
-import { ThemeProvider } from "styled-components"
+import styled, { ThemeProvider } from "styled-components"
 //STYLES
 import { GlobalStyle } from "../utils/globalStye"
 import { theme } from "../utils/theme"
+import { media } from "../utils/mediaquery"
 //DATA
 import { info } from "../assets/data/kontakt"
 //COOKIES
@@ -16,6 +17,25 @@ import FooterIks from "../components/footer/footerIks/FooterIks"
 import NavbarHeader from "../components/navbar/NavbarHeader"
 import NavbarJezus from "../components/navbar/NavbarJezus"
 
+const Children = styled.div`
+  //margin-top: 600px;
+  ${media.lessThan("huge")`
+    //margin-top: 20px;
+  `}
+
+  ${media.lessThan("large")`
+    //margin-top: 300px;
+  `}
+
+  ${media.lessThan("medium")`
+    //margin-top: 200px;
+  `}
+
+  ${media.lessThan("small")`
+    //margin-top: 100px;
+  `}
+`
+
 const Layout = props => {
   return (
     <ThemeProvider theme={theme}>
@@ -23,8 +43,8 @@ const Layout = props => {
       <div>
         <NavbarHeader />
         <Navbar />
-        <NavbarJezus />
-        <div>{props.children}</div>
+        {/* <NavbarJezus /> */}
+        <Children>{props.children}</Children>
         {/* 
         
         <Cookie />

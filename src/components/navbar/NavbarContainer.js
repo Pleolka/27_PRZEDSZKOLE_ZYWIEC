@@ -13,35 +13,35 @@ import NavMobile from "./navbarMobile/NavMobile"
 import HamburgerMenuIcon from "./navbarMobile/HamburgerMenuIcon"
 import LogoMobile from "./navbarMobile/LogoMobile"
 import NavmobileClouds from "./navbarMobile/NavmobileClouds"
+import NavbarJezus from "./NavbarJezus"
 
 const navbarItemCount = Object.keys(list).length
 const navbarHeight = 60
 const navbarMobileHeight = 50
 
 const Nav = styled.nav`
-  position: sticky;
-  margin-top: -640px;
+  position: fixed;
+  margin-top: 0px;
   top: 80px;
   z-index: 20;
   height: ${`${navbarHeight}px`};
   width: 100%;
   transition: all 0.2s;
   background-color: transparent;
+  //margin-top: -480px;
   &.scroll {
   }
 
   &.top {
   }
 
-  ${media.lessThan("huge")`
-  margin-top: -430px;
-  margin-bottom: 300px;
+  /* ${media.lessThan("huge")`
+  margin-top: -330px;
   `}
 
   ${media.lessThan("large")`
-  margin-top: -400px;
-  margin-bottom: 280px;
-  `}
+  margin-top: -200px;
+  `} */
 
   ${media.lessThan("medium")`
   display: none;
@@ -91,8 +91,8 @@ const NavbarItem = styled(Link)`
   width: 100%;
   white-space: nowrap;
   background-color: transparent;
-  font-size: 20px;
-  font-family: ${theme.font.header};
+  //font-size: 20px;
+  font-family: ${theme.font.main};
   font-weight: 700;
   line-height: 1.1;
   transition: all 0.5s ease-in-out;
@@ -230,6 +230,7 @@ function Navbar() {
         <HamburgerMenuIcon onClick={handleClick} clicked={click} />
         <NavmobileClouds />
       </NavbarMobileWrapper>
+      <NavbarJezus />
     </>
   )
 }

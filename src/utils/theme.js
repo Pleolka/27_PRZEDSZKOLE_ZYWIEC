@@ -15,12 +15,12 @@ export const theme = {
 
   font: {
     main: "Yaldevi",
-    header: "Yaldevi",
+    header: "Pacifico",
     special: "Pacifico",
 
     weight: 300,
     weightBold: 700,
-    weightH: 700,
+    weightH: 100,
 
     sizeSmall: "14px",
 
