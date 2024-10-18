@@ -5,6 +5,7 @@ import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 //STYLING
 import { styled } from "styled-components"
 import { theme } from "../utils/theme"
+import { media } from "../utils/mediaquery"
 
 const GaleriaWrapper = styled.div`
   margin-top: 3rem;
@@ -12,6 +13,20 @@ const GaleriaWrapper = styled.div`
   grid-template-columns: repeat(${props => props.xl || 4}, 1fr);
   column-gap: 2rem;
   row-gap: 2rem;
+
+  ${media.lessThan("large")`
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 1rem;
+  `}
+
+  ${media.lessThan("medium")`
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1rem;
+  `}
+
+  ${media.lessThan("small")`
+    grid-template-columns: repeat(2, 1fr);
+  `}
 `
 
 const GaleriaCard = styled.a`

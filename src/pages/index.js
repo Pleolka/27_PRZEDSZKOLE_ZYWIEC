@@ -1,11 +1,11 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 //STYLING
-
+import styled from "styled-components"
+import { media } from "../utils/mediaquery"
 //COMPONENTS
 import { Container, Heading } from "../utils/utils"
 import Card from "../components/card/Card"
-import styled from "styled-components"
 
 const CardWrapper = styled.div`
   margin-top: 3rem;
@@ -13,6 +13,15 @@ const CardWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(${props => props.grupyCount || 1}, 300px);
   column-gap: 3rem;
+  row-gap: 2rem;
+  ${media.lessThan("medium")`
+    grid-template-columns: repeat(2, 250px);
+    column-gap: 1rem;
+  `}
+
+  ${media.lessThan("small")`
+    grid-template-columns: repeat(1, 250px);
+  `}
 `
 
 export default function Home({ data }) {

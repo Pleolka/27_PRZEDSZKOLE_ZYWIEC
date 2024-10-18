@@ -165,7 +165,9 @@ export const TabMenu = styled.div`
 export const Tab = styled.div`
   padding-left: 2rem;
   padding-top: 1rem;
-
+  ${media.lessThan("medium")`
+    padding-left: 1rem;
+  `}
   P {
     white-space: pre-wrap;
   }
@@ -180,6 +182,18 @@ export const Tab = styled.div`
     margin-inline-end: 0px;
     padding-inline-start: 2rem;
     margin-bottom: 0.2rem;
+
+    ${media.lessThan("medium")`
+    margin-inline-start: 1rem;
+    padding-inline-start: 1rem;
+    margin-bottom: 0.1rem;
+  `}
+
+    ${media.lessThan("small")`
+  margin-inline-start: 0.7rem;
+    padding-inline-start: 0.7rem;
+    margin-bottom: 0.1rem;
+  `}
   }
 `
 
