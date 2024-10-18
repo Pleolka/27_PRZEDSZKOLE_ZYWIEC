@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 //DATA
 import { list } from "../../../assets/data/pageStructure"
@@ -86,63 +86,67 @@ const FooterLinki = styled.ul`
   }
 `
 
-const Footer = ({
-  tel,
-  email,
-  ulica,
-  nrBud,
-  miasto,
-  kod,
-  woj,
-  kraj,
-  fb,
-  insta,
-}) => {
-  const menu = list.map(item => (
-    <li key={item.name}>
-      <Link activeClassName="active" to={item.path}>
-        {item.name}
-      </Link>
-    </li>
-  ))
-
+export default function Footer() {
   return (
-    <Foot id="footer">
-      <FooterWrapper>
-        <CardWrapperMob xl="3" l="3" m="3" s="1" mb="0" pb="2rem">
-          <FooterAdres>
-            <p>Adres</p>
-            <p>
-              ul. {ulica} {nrBud}
-            </p>
-            <p>
-              {kod} {miasto}
-            </p>
-            <p>Województwo {woj}</p>
-            <p>{kraj}</p>
-          </FooterAdres>
+    <StaticQuery
+      query={graphql`
+        query FooterQuery {
+          allContentfulKontakt {
+            nodes {
+              nazwa
+              ulica
+              numer
+              kodPocztowy
+              miasto
+              woj
+              tytul1
+              telefon1
+              email
+              tytul2
+              telefon2
+            }
+          }
+        }
+      `}
+      render={data => {
+        const info = data.allContentfulKontakt.nodes[0]
 
-          <FooterKontakt>
-            <Link to="/kontakt">Kontakt</Link>
-            <p>+48 {tel}</p>
-            <p>{email}</p>
-            {/* 
-            <div>
-              <a target="blank" href={fb}>
-                <FontAwesomeIcon icon={faFacebook} />
-                <span>facebook</span>
-              </a>
-              <a target="blank" href={insta}>
-                <FontAwesomeIcon icon={faInstagram} />
-                <span>instagram</span>
-              </a>
-            </div> */}
-          </FooterKontakt>
+        return (
+          <Foot id="footer">
+            <FooterWrapper>
+              <CardWrapperMob xl="3" l="3" m="3" s="1" mb="0" pb="2rem">
+                <FooterAdres>
+                  <p>Adres</p>
+                  <p>{info.nazwa}</p>
+                  <p>
+                    ul. {info.ulica} {info.numer}
+                  </p>
+                  <p>
+                    {info.kodPocztowy} {info.miasto}
+                  </p>
+                  <p>Województwo {info.woj}</p>
+                </FooterAdres>
 
-          <FooterLinki>{menu}</FooterLinki>
-        </CardWrapperMob>
-      </FooterWrapper>
-    </Foot>
+                <FooterKontakt>
+                  <a href="/kontakt">Kontakt</a>
+                  <p>{info.telefon1}</p>
+                  <p>{info.email}</p>
+                </FooterKontakt>
+
+                <FooterLinki>
+                  {list.map(item => (
+                    <li key={item.name}>
+                      <Link activeClassName="active" to={item.path}>
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </FooterLinki>
+              </CardWrapperMob>
+            </FooterWrapper>
+          </Foot>
+        )
+      }}
+    />
   )
 }
-export default Footer

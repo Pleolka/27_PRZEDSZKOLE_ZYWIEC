@@ -24,6 +24,8 @@ export const color = {
   font: "rgba(0, 0, 0, .80)",
   heading: "#35A6B4",
   white: "rgba(255, 255, 255, 1)",
+  grey: "rgba(0, 0, 0, .50)",
+  lightgrey: "rgba(0, 0, 0, .30)",
 
   base: "#35A6B4",
   baseLight: "#CFF1F3",

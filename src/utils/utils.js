@@ -94,6 +94,7 @@ export const Heading = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  margin-bottom: ${props => props.mb || "0rem"};
 
   h1,
   p {
@@ -104,7 +105,7 @@ export const Heading = styled.div`
     font-weight: 300;
   }
   p {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     font-weight: 100;
     max-width: 500px;
     //font-size: 18px;
@@ -121,4 +122,67 @@ export const Heading = styled.div`
   ${media.lessThan("small")`
   margin-top: 50px;
   `}
+`
+
+export const TabWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 250px 1fr;
+
+  ${media.lessThan("medium")`
+  grid-template-columns: 150px 1fr;
+  `}
+
+  ${media.lessThan("small")`
+  grid-template-columns: 100px 1fr;
+  `}
+`
+
+export const TabMenu = styled.div`
+  border-right: 1px solid ${theme.color.base};
+  transition: all 0.5s ease-in-out;
+
+  li {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    list-style-type: none;
+    list-style-position: outside;
+    margin-left: 0;
+    height: 60px;
+    transition: all 0.5s ease-in-out;
+    color: ${theme.color.lightgrey};
+    padding-right: 1rem;
+
+    &.active,
+    &:hover {
+      font-weight: 700;
+      border-right: 6px solid ${theme.color.base};
+      color: ${theme.color.base};
+    }
+  }
+`
+
+export const Tab = styled.div`
+  padding-left: 2rem;
+  padding-top: 1rem;
+
+  P {
+    white-space: pre-wrap;
+  }
+
+  ul {
+    margin-bottom: 2rem;
+  }
+
+  li {
+    list-style-position: outside;
+    margin-inline-start: 2rem;
+    margin-inline-end: 0px;
+    padding-inline-start: 2rem;
+    margin-bottom: 0.2rem;
+  }
+`
+
+export const TabIntro = styled.div`
+  margin-bottom: 3rem;
 `

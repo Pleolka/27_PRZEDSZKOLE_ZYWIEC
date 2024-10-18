@@ -3,7 +3,6 @@ import { graphql } from "gatsby"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 //STYLING
 import { styled } from "styled-components"
-
 //COMPONENTS
 import { Container, Heading } from "../utils/utils"
 import { theme } from "../utils/theme"
@@ -16,7 +15,6 @@ const Aktualnosc = styled.div`
   padding: 2rem;
   border: 1px solid ${theme.color.base};
   border-radius: 20px;
-  cursor: pointer;
   transition: all 0.5s ease-in-out;
 
   h5 {
@@ -134,7 +132,7 @@ export default function Aktualnosci({ data }) {
 
 export const query = graphql`
   query AktualnosciPageQuery {
-    allContentfulAktualnosc {
+    allContentfulAktualnosc(sort: { dataDodania: DESC }) {
       nodes {
         tekst {
           childMarkdownRemark {

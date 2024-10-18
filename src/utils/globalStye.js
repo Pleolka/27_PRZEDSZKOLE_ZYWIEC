@@ -41,7 +41,7 @@ p {
     padding: 0;
 }
 
-p, a {
+p, a, li {
     color: ${theme.color.font};
     font-family: ${theme.font.main};
     font-weight: ${theme.font.weight};
@@ -148,25 +148,26 @@ h6 {
     line-height: ${props => props.lineHeight || 1.7};
   }
 
-ul {
+  ol, ul {
     display: block;
-    list-style-type: disc;
-    list-style-position: outside;
     margin-block-start: 0;
     margin-block-end: 0;
     margin-inline-start: 0rem;
     margin-inline-end: 0px;
     padding-inline-start: 0px;
     line-height: 1.5;
+  }
+
+ul {
+    list-style-type: disc;
+    list-style-position: outside;
 }
 
 li {
     color: ${({ theme }) => theme.color.font};
     font-family: ${({ theme }) => theme.font.main};
-    margin-left: 1rem;
+    margin-left: 0;
     margin-top: 0;
-    font-size: ${props => props.xl || props.theme.font.size.p.xl};
-    line-height: ${props => props.lineHeight || props.theme.font.lineH.p.xl};
 }
 
 a {
