@@ -1,9 +1,7 @@
-import * as React from "react"
+import React from "react"
 import { graphql } from "gatsby"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
-//STYLING
-import { styled } from "styled-components"
-//COMPONENTS
+import styled from "styled-components"
 import { Container, Heading } from "../utils/utils"
 import { theme } from "../utils/theme"
 
@@ -12,7 +10,7 @@ const Aktualnosc = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 2rem;
+  overflow: hidden;
   border: 1px solid ${theme.color.base};
   border-radius: 20px;
   transition: all 0.5s ease-in-out;
@@ -23,17 +21,46 @@ const Aktualnosc = styled.div`
   }
 `
 
+const Main = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+`
+
+const Info = styled.div`
+  padding: 2rem;
+`
+
 const Tekst = styled.div`
   a {
     display: flex;
     flex-direction: column;
     color: ${theme.color.base};
+    text-decoration: underline;
+    transition: all 0.5s ease-in-out;
+
+    &:hover {
+      color: ${theme.color.baseDark};
+    }
   }
 `
 
-const Image = styled.div`
+const ImageWrapper = styled.div`
   display: flex;
-  width: 200px;
+  height: 100%;
+
+  img {
+    object-fit: cover !important;
+  }
+`
+
+const Title = styled.div`
+  display: grid;
+  margin-bottom: 3rem;
+
+  p {
+    text-transform: capitalize;
+    opacity: 0.5;
+  }
 `
 
 const Film = styled.div`
@@ -60,54 +87,47 @@ export default function Aktualnosci({ data }) {
       </Heading>
 
       {data.allContentfulAktualnosc.nodes.map(aktualnosc => (
-        <Aktualnosc>
-          {
-            //TITLE
-          }
-          <h6>{aktualnosc.tytul}</h6>
-          <p>{aktualnosc.dataDodania}</p>
-          {
-            //IMAGE
-          }
-          <Image>
-            {aktualnosc.miniaturka ? (
-              <GatsbyImage
-                image={aktualnosc.miniaturka.gatsbyImageData}
-                alt={aktualnosc.miniaturka.filename}
-                objectFit="contain"
-              />
-            ) : (
-              <StaticImage
-                src="../assets/images/logo/logo.png"
-                alt="Cloud"
-                aspectRatio={1}
-                quality={100}
-                transformOptions={{ fit: "contain" }}
-                placeholder="blurred"
-                backgroundColor="white"
-              />
-            )}
-          </Image>
-          {
-            //TEKST
-          }
-          <Tekst
-            dangerouslySetInnerHTML={{
-              __html: aktualnosc.tekst.childMarkdownRemark.html,
-            }}
-          ></Tekst>
-          {
-            //PLAKAT
-          }
+        <Aktualnosc key={aktualnosc.tytul}>
+          <Main>
+            <ImageWrapper>
+              {aktualnosc.miniaturka ? (
+                <GatsbyImage
+                  image={aktualnosc.miniaturka.gatsbyImageData}
+                  alt={aktualnosc.miniaturka.filename}
+                  objectFit="contain"
+                />
+              ) : (
+                <StaticImage
+                  src="../assets/images/placeholder.jpg"
+                  alt="Placeholder"
+                  aspectRatio={1}
+                  quality={100}
+                  placeholder="blurred"
+                />
+              )}
+            </ImageWrapper>
+
+            <Info>
+              <Title>
+                <h3>{aktualnosc.tytul}</h3>
+                <p>{aktualnosc.dataDodania}</p>
+              </Title>
+
+              <Tekst
+                dangerouslySetInnerHTML={{
+                  __html: aktualnosc.tekst.childMarkdownRemark.html,
+                }}
+              ></Tekst>
+            </Info>
+          </Main>
+
           {aktualnosc.plakat && (
             <GatsbyImage
               image={aktualnosc.plakat.gatsbyImageData}
               alt={aktualnosc.plakat.filename}
             />
           )}
-          {
-            //YOUTUBE
-          }
+
           {aktualnosc.youTubeLink && (
             <Film>
               <iframe
@@ -118,8 +138,6 @@ export default function Aktualnosci({ data }) {
                 title={aktualnosc.tytul}
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 frameBorder="0"
-                webkitallowfullscreen="true"
-                mozallowfullscreen="true"
                 allowFullScreen
               />
             </Film>
@@ -132,14 +150,14 @@ export default function Aktualnosci({ data }) {
 
 export const query = graphql`
   query AktualnosciPageQuery {
-    allContentfulAktualnosc(sort: { dataDodania: DESC }) {
+    allContentfulAktualnosc(sort: { dataDodania: DESC }, limit: 30) {
       nodes {
         tekst {
           childMarkdownRemark {
             html
           }
         }
-        dataDodania
+        dataDodania(formatString: "DD MMMM YYYY", locale: "pl")
         plakat {
           gatsbyImageData(
             layout: FULL_WIDTH
@@ -150,7 +168,14 @@ export const query = graphql`
         tytul
         youTubeLink
         miniaturka {
-          gatsbyImageData(aspectRatio: 1, placeholder: BLURRED, formats: [WEBP])
+          gatsbyImageData(
+            resizingBehavior: FILL
+            quality: 100
+            placeholder: BLURRED
+            formats: WEBP
+            cropFocus: CENTER
+            aspectRatio: 1
+          )
           filename
         }
       }

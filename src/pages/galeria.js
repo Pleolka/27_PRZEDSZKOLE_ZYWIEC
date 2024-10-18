@@ -58,7 +58,7 @@ export default function Galeria({ data }) {
       </Heading>
       <GaleriaWrapper>
         {data.allContentfulGaleria.nodes.map(galeria => (
-          <GaleriaCard href={galeria.linkDoGalerii}>
+          <GaleriaCard key={galeria.tytul} href={galeria.linkDoGalerii}>
             <h5>{galeria.tytul}</h5>
             <GatsbyImage
               image={galeria.zdjecie.gatsbyImageData}
