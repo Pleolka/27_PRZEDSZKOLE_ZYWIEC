@@ -177,7 +177,7 @@ export const Tab = styled.div`
   }
 
   ul,
-  h4 {
+  h3 {
     margin-bottom: 2rem;
   }
 
