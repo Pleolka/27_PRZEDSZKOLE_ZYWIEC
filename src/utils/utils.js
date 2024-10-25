@@ -168,11 +168,16 @@ export const Tab = styled.div`
   ${media.lessThan("medium")`
     padding-left: 1rem;
   `}
+
+  h2 {
+    font-family: ${theme.font.main};
+  }
   P {
     white-space: pre-wrap;
   }
 
-  ul {
+  ul,
+  h4 {
     margin-bottom: 2rem;
   }
 
