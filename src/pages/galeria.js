@@ -6,6 +6,7 @@ import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { styled } from "styled-components"
 import { theme } from "../utils/theme"
 import { media } from "../utils/mediaquery"
+import Seo from "../components/seo/Seo"
 
 const GaleriaWrapper = styled.div`
   margin-top: 3rem;
@@ -51,24 +52,27 @@ const GaleriaCard = styled.a`
 
 export default function Galeria({ data }) {
   return (
-    <Container>
-      <Heading>
-        <h1>Galeria</h1>
-        <p>Zawsze najnowsze zdjęcia naszych przedszkolaków</p>
-      </Heading>
-      <GaleriaWrapper>
-        {data.allContentfulGaleria.nodes.map(galeria => (
-          <GaleriaCard key={galeria.tytul} href={galeria.linkDoGalerii}>
-            <h5>{galeria.tytul}</h5>
-            <GatsbyImage
-              image={galeria.zdjecie.gatsbyImageData}
-              alt={galeria.tytul}
-              objectFit="contain"
-            />
-          </GaleriaCard>
-        ))}
-      </GaleriaWrapper>
-    </Container>
+    <>
+      <Seo title="Galeria" slug="/galeria" />
+      <Container>
+        <Heading>
+          <h1>Galeria</h1>
+          <p>Zawsze najnowsze zdjęcia naszych przedszkolaków</p>
+        </Heading>
+        <GaleriaWrapper>
+          {data.allContentfulGaleria.nodes.map(galeria => (
+            <GaleriaCard key={galeria.tytul} href={galeria.linkDoGalerii}>
+              <h5>{galeria.tytul}</h5>
+              <GatsbyImage
+                image={galeria.zdjecie.gatsbyImageData}
+                alt={galeria.tytul}
+                objectFit="contain"
+              />
+            </GaleriaCard>
+          ))}
+        </GaleriaWrapper>
+      </Container>
+    </>
   )
 }
 

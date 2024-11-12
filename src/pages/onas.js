@@ -6,7 +6,7 @@ import { theme } from "../utils/theme"
 import { media } from "../utils/mediaquery"
 //COMPONENTS
 import { Container, Heading, Tab, TabMenu, TabWrapper } from "../utils/utils"
-
+import Seo from "../components/seo/Seo"
 // Stylowanie dla personelu
 const PersonelWrapper = styled.div`
   margin-top: 3rem;
@@ -126,47 +126,50 @@ export default function Onas({ data }) {
   }, [personel])
 
   return (
-    <Container>
-      <Heading mb="3rem">
-        <h1>O nas</h1>
-        <p>Garść informacji o personelu i historii</p>
-      </Heading>
-      <TabWrapper>
-        {/* Menu zakładek */}
-        <TabMenu>
-          <li
-            onClick={() => setActiveTab(0)}
-            className={activeTab === 0 ? "active" : ""}
-          >
-            Plan dnia
-          </li>
-          <li
-            onClick={() => setActiveTab(1)}
-            className={activeTab === 1 ? "active" : ""}
-          >
-            Zajęcia dodatkowe
-          </li>
-          <li
-            onClick={() => setActiveTab(2)}
-            className={activeTab === 2 ? "active" : ""}
-          >
-            Personel
-          </li>
-        </TabMenu>
-        {/* Zawartość wybranej zakładki */}
-        <Tab>
-          {activeTab === 0 && renderPlan}
+    <>
+      <Seo title="O nas" slug="/onas" />
+      <Container>
+        <Heading mb="3rem">
+          <h1>O nas</h1>
+          <p>Garść informacji o personelu i historii</p>
+        </Heading>
+        <TabWrapper>
+          {/* Menu zakładek */}
+          <TabMenu>
+            <li
+              onClick={() => setActiveTab(0)}
+              className={activeTab === 0 ? "active" : ""}
+            >
+              Plan dnia
+            </li>
+            <li
+              onClick={() => setActiveTab(1)}
+              className={activeTab === 1 ? "active" : ""}
+            >
+              Zajęcia dodatkowe
+            </li>
+            <li
+              onClick={() => setActiveTab(2)}
+              className={activeTab === 2 ? "active" : ""}
+            >
+              Personel
+            </li>
+          </TabMenu>
+          {/* Zawartość wybranej zakładki */}
+          <Tab>
+            {activeTab === 0 && renderPlan}
 
-          {activeTab === 1 && (
-            <ZajeciaDodatkoweWrapper>{renderZajecia}</ZajeciaDodatkoweWrapper>
-          )}
+            {activeTab === 1 && (
+              <ZajeciaDodatkoweWrapper>{renderZajecia}</ZajeciaDodatkoweWrapper>
+            )}
 
-          {activeTab === 2 && (
-            <PersonelWrapper>{renderPersonel}</PersonelWrapper>
-          )}
-        </Tab>
-      </TabWrapper>
-    </Container>
+            {activeTab === 2 && (
+              <PersonelWrapper>{renderPersonel}</PersonelWrapper>
+            )}
+          </Tab>
+        </TabWrapper>
+      </Container>
+    </>
   )
 }
 

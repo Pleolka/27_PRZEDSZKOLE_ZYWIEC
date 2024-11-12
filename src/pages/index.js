@@ -6,6 +6,7 @@ import { media } from "../utils/mediaquery"
 //COMPONENTS
 import { Container, Heading } from "../utils/utils"
 import Card from "../components/card/Card"
+import Seo from "../components/seo/Seo"
 
 const CardWrapper = styled.div`
   margin-top: 3rem;
@@ -27,6 +28,7 @@ const CardWrapper = styled.div`
 export default function Home({ data }) {
   return (
     <div>
+      <Seo title="Przedszkole" slug="/" />
       <Container>
         <Heading>
           <h1>Nasze grupy</h1>

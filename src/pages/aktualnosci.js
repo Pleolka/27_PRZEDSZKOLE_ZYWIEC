@@ -4,6 +4,7 @@ import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import { Container, Heading } from "../utils/utils"
 import { theme } from "../utils/theme"
+import Seo from "../components/seo/Seo"
 
 const Aktualnosc = styled.div`
   margin-top: 2rem;
@@ -80,71 +81,74 @@ const Film = styled.div`
 
 export default function Aktualnosci({ data }) {
   return (
-    <Container>
-      <Heading>
-        <h1>Aktualności</h1>
-        <p>Najnowsze informacje o wydarzeniach z naszego przedszkola</p>
-      </Heading>
+    <>
+      <Seo title="Aktualności" slug="/aktualnosci" />
+      <Container>
+        <Heading>
+          <h1>Aktualności</h1>
+          <p>Najnowsze informacje o wydarzeniach z naszego przedszkola</p>
+        </Heading>
 
-      {data.allContentfulAktualnosc.nodes.map(aktualnosc => (
-        <Aktualnosc key={aktualnosc.tytul}>
-          <Main>
-            <ImageWrapper>
-              {aktualnosc.miniaturka ? (
-                <GatsbyImage
-                  image={aktualnosc.miniaturka.gatsbyImageData}
-                  alt={aktualnosc.miniaturka.filename}
-                  objectFit="contain"
-                />
-              ) : (
-                <StaticImage
-                  src="../assets/images/placeholder.jpg"
-                  alt="Placeholder"
-                  aspectRatio={1}
-                  quality={100}
-                  placeholder="blurred"
-                />
-              )}
-            </ImageWrapper>
-
-            <Info>
-              <Title>
-                <h3>{aktualnosc.tytul}</h3>
-                <p>{aktualnosc.dataDodania}</p>
-              </Title>
-
-              <Tekst
-                dangerouslySetInnerHTML={{
-                  __html: aktualnosc.tekst.childMarkdownRemark.html,
-                }}
-              ></Tekst>
-            </Info>
-          </Main>
-
-          {aktualnosc.plakat && (
-            <GatsbyImage
-              image={aktualnosc.plakat.gatsbyImageData}
-              alt={aktualnosc.plakat.filename}
-            />
-          )}
-
-          {aktualnosc.youTubeLink && (
-            <Film>
-              <iframe
-                src={aktualnosc.youTubeLink.replace(
-                  "https://youtu.be/",
-                  "https://www.youtube.com/embed/"
+        {data.allContentfulAktualnosc.nodes.map(aktualnosc => (
+          <Aktualnosc key={aktualnosc.tytul}>
+            <Main>
+              <ImageWrapper>
+                {aktualnosc.miniaturka ? (
+                  <GatsbyImage
+                    image={aktualnosc.miniaturka.gatsbyImageData}
+                    alt={aktualnosc.miniaturka.filename}
+                    objectFit="contain"
+                  />
+                ) : (
+                  <StaticImage
+                    src="../assets/images/placeholder.jpg"
+                    alt="Placeholder"
+                    aspectRatio={1}
+                    quality={100}
+                    placeholder="blurred"
+                  />
                 )}
-                title={aktualnosc.tytul}
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                frameBorder="0"
-                allowFullScreen
+              </ImageWrapper>
+
+              <Info>
+                <Title>
+                  <h3>{aktualnosc.tytul}</h3>
+                  <p>{aktualnosc.dataDodania}</p>
+                </Title>
+
+                <Tekst
+                  dangerouslySetInnerHTML={{
+                    __html: aktualnosc.tekst.childMarkdownRemark.html,
+                  }}
+                ></Tekst>
+              </Info>
+            </Main>
+
+            {aktualnosc.plakat && (
+              <GatsbyImage
+                image={aktualnosc.plakat.gatsbyImageData}
+                alt={aktualnosc.plakat.filename}
               />
-            </Film>
-          )}
-        </Aktualnosc>
-      ))}
-    </Container>
+            )}
+
+            {aktualnosc.youTubeLink && (
+              <Film>
+                <iframe
+                  src={aktualnosc.youTubeLink.replace(
+                    "https://youtu.be/",
+                    "https://www.youtube.com/embed/"
+                  )}
+                  title={aktualnosc.tytul}
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  frameBorder="0"
+                  allowFullScreen
+                />
+              </Film>
+            )}
+          </Aktualnosc>
+        ))}
+      </Container>
+    </>
   )
 }
 

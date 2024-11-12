@@ -26,7 +26,7 @@ module.exports = {
   siteMetadata: {
     title: "Przedszkole Sióstr Serafitek w Żywcu",
     author: "IKS Aleksandra Fabian",
-    siteUrl: `https://www.przedszkoleoswiecim.com.pl`,
+    siteUrl: `https://przedszkolezywiec-serafitki.pl/`,
   },
 
   /* Your site config here */
