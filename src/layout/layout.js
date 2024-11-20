@@ -15,7 +15,6 @@ import Footer from "../components/footer/footer/footer"
 import FooterHeader from "../components/footer/footerHeader/FooterHeader"
 import FooterIks from "../components/footer/footerIks/FooterIks"
 import NavbarHeader from "../components/navbar/NavbarHeader"
-import NavbarJezus from "../components/navbar/NavbarJezus"
 
 const Children = styled.div`
   //margin-top: 600px;

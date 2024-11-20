@@ -7,6 +7,7 @@ import { media } from "../utils/mediaquery"
 //COMPONENTS
 import { Container, Heading, Tab, TabMenu, TabWrapper } from "../utils/utils"
 import Seo from "../components/seo/Seo"
+import Layout from "../layout/layout"
 // Stylowanie dla personelu
 const PersonelWrapper = styled.div`
   margin-top: 3rem;
@@ -128,47 +129,51 @@ export default function Onas({ data }) {
   return (
     <>
       <Seo title="O nas" slug="/onas" />
-      <Container>
-        <Heading mb="3rem">
-          <h1>O nas</h1>
-          <p>Garść informacji o personelu i historii</p>
-        </Heading>
-        <TabWrapper>
-          {/* Menu zakładek */}
-          <TabMenu>
-            <li
-              onClick={() => setActiveTab(0)}
-              className={activeTab === 0 ? "active" : ""}
-            >
-              Plan dnia
-            </li>
-            <li
-              onClick={() => setActiveTab(1)}
-              className={activeTab === 1 ? "active" : ""}
-            >
-              Zajęcia dodatkowe
-            </li>
-            <li
-              onClick={() => setActiveTab(2)}
-              className={activeTab === 2 ? "active" : ""}
-            >
-              Personel
-            </li>
-          </TabMenu>
-          {/* Zawartość wybranej zakładki */}
-          <Tab>
-            {activeTab === 0 && renderPlan}
+      <Layout>
+        <Container>
+          <Heading mb="3rem">
+            <h1>O nas</h1>
+            <p>Garść informacji o personelu i historii</p>
+          </Heading>
+          <TabWrapper>
+            {/* Menu zakładek */}
+            <TabMenu>
+              <li
+                onClick={() => setActiveTab(0)}
+                className={activeTab === 0 ? "active" : ""}
+              >
+                Plan dnia
+              </li>
+              <li
+                onClick={() => setActiveTab(1)}
+                className={activeTab === 1 ? "active" : ""}
+              >
+                Zajęcia dodatkowe
+              </li>
+              <li
+                onClick={() => setActiveTab(2)}
+                className={activeTab === 2 ? "active" : ""}
+              >
+                Personel
+              </li>
+            </TabMenu>
+            {/* Zawartość wybranej zakładki */}
+            <Tab>
+              {activeTab === 0 && renderPlan}
 
-            {activeTab === 1 && (
-              <ZajeciaDodatkoweWrapper>{renderZajecia}</ZajeciaDodatkoweWrapper>
-            )}
+              {activeTab === 1 && (
+                <ZajeciaDodatkoweWrapper>
+                  {renderZajecia}
+                </ZajeciaDodatkoweWrapper>
+              )}
 
-            {activeTab === 2 && (
-              <PersonelWrapper>{renderPersonel}</PersonelWrapper>
-            )}
-          </Tab>
-        </TabWrapper>
-      </Container>
+              {activeTab === 2 && (
+                <PersonelWrapper>{renderPersonel}</PersonelWrapper>
+              )}
+            </Tab>
+          </TabWrapper>
+        </Container>
+      </Layout>
     </>
   )
 }
@@ -198,10 +203,13 @@ export const query = graphql`
         stanowisko
         zdjecie {
           gatsbyImageData(
-            layout: FULL_WIDTH
+            aspectRatio: 1
+            backgroundColor: "white"
+            layout: CONSTRAINED
             placeholder: BLURRED
-            formats: [WEBP]
+            formats: [AUTO, WEBP]
             quality: 20
+            width: 450
           )
         }
       }

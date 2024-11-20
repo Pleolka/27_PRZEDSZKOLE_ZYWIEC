@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import { theme } from "../../../utils/theme"
 
 const Icon = styled.svg`
   stroke: lightgrey;

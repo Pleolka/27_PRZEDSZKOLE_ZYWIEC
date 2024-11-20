@@ -67,10 +67,11 @@ export const query = graphql`
         obraz {
           filename
           gatsbyImageData(
-            layout: FULL_WIDTH
+            layout: CONSTRAINED
             placeholder: BLURRED
-            formats: [WEBP]
+            formats: [AUTO, WEBP]
             quality: 20
+            width: 300
           )
         }
       }

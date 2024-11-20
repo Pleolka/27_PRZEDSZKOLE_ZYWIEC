@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 import { media } from "../../../utils/mediaquery"
-import LogoMobile from "./LogoMobile"
 
 const ItemWrapper = styled.div`
   position: fixed;

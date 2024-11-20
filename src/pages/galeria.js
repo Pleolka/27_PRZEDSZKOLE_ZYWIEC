@@ -1,12 +1,13 @@
 import * as React from "react"
 import { Container, Heading } from "../utils/utils"
 import { graphql } from "gatsby"
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 //STYLING
 import { styled } from "styled-components"
 import { theme } from "../utils/theme"
 import { media } from "../utils/mediaquery"
 import Seo from "../components/seo/Seo"
+import Layout from "../layout/layout"
 
 const GaleriaWrapper = styled.div`
   margin-top: 3rem;
@@ -54,24 +55,26 @@ export default function Galeria({ data }) {
   return (
     <>
       <Seo title="Galeria" slug="/galeria" />
-      <Container>
-        <Heading>
-          <h1>Galeria</h1>
-          <p>Zawsze najnowsze zdjęcia naszych przedszkolaków</p>
-        </Heading>
-        <GaleriaWrapper>
-          {data.allContentfulGaleria.nodes.map(galeria => (
-            <GaleriaCard key={galeria.tytul} href={galeria.linkDoGalerii}>
-              <h5>{galeria.tytul}</h5>
-              <GatsbyImage
-                image={galeria.zdjecie.gatsbyImageData}
-                alt={galeria.tytul}
-                objectFit="contain"
-              />
-            </GaleriaCard>
-          ))}
-        </GaleriaWrapper>
-      </Container>
+      <Layout>
+        <Container>
+          <Heading>
+            <h1>Galeria</h1>
+            <p>Zawsze najnowsze zdjęcia naszych przedszkolaków</p>
+          </Heading>
+          <GaleriaWrapper>
+            {data.allContentfulGaleria.nodes.map(galeria => (
+              <GaleriaCard key={galeria.tytul} href={galeria.linkDoGalerii}>
+                <h5>{galeria.tytul}</h5>
+                <GatsbyImage
+                  image={galeria.zdjecie.gatsbyImageData}
+                  alt={galeria.tytul}
+                  objectFit="contain"
+                />
+              </GaleriaCard>
+            ))}
+          </GaleriaWrapper>
+        </Container>
+      </Layout>
     </>
   )
 }
@@ -86,9 +89,11 @@ export const query = graphql`
           gatsbyImageData(
             aspectRatio: 1
             backgroundColor: "white"
-            quality: 20
+            layout: CONSTRAINED
             placeholder: BLURRED
-            layout: FULL_WIDTH
+            formats: [AUTO, WEBP]
+            quality: 20
+            width: 300
           )
         }
       }

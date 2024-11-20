@@ -4,6 +4,7 @@ import { Container, Heading } from "../utils/utils"
 import styled from "styled-components"
 import { media } from "../utils/mediaquery"
 import Seo from "../components/seo/Seo"
+import Layout from "../layout/layout"
 
 const KontaktWrapper = styled.div`
   display: grid;
@@ -47,35 +48,37 @@ export default function Kontakt({ data }) {
   return (
     <>
       <Seo title="Kontakt" slug="/kontakt" />
-      <Container>
-        <Heading>
-          <h1>Kontakt</h1>
-          <p>Zapraszamy do kontaktu!</p>
-        </Heading>
-        <KontaktWrapper>
-          <div>
-            <h5>{info.nazwa}</h5>
-            <p>
-              ul. {info.ulica} {info.numer}
-            </p>
-            <p>
-              {info.kodPocztowy} {info.miasto}
-            </p>
-            <p>Województwo {info.woj}</p>
-          </div>
-          <div>
-            <h5>{info.tytul1}</h5>
-            <p>
-              Tel. <b>{info.telefon1}</b>
-            </p>
-            <p>{info.email}</p>
-            <h5>{info.tytul2}</h5>
-            <p>
-              Tel. <b>+48 {info.telefon2}</b>
-            </p>
-          </div>
-        </KontaktWrapper>
-      </Container>
+      <Layout>
+        <Container>
+          <Heading>
+            <h1>Kontakt</h1>
+            <p>Zapraszamy do kontaktu!</p>
+          </Heading>
+          <KontaktWrapper>
+            <div>
+              <h5>{info.nazwa}</h5>
+              <p>
+                ul. {info.ulica} {info.numer}
+              </p>
+              <p>
+                {info.kodPocztowy} {info.miasto}
+              </p>
+              <p>Województwo {info.woj}</p>
+            </div>
+            <div>
+              <h5>{info.tytul1}</h5>
+              <p>
+                Tel. <b>{info.telefon1}</b>
+              </p>
+              <p>{info.email}</p>
+              <h5>{info.tytul2}</h5>
+              <p>
+                Tel. <b>+48 {info.telefon2}</b>
+              </p>
+            </div>
+          </KontaktWrapper>
+        </Container>
+      </Layout>
     </>
   )
 }

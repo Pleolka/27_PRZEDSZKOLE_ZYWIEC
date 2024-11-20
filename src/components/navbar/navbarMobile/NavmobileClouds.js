@@ -1,10 +1,7 @@
 import React from "react"
-import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import { media } from "../../../utils/mediaquery"
-import { property } from "lodash"
-import { theme } from "../../../utils/theme"
 
 const ImageWrapper = styled.div`
   display: flex;
@@ -23,7 +20,7 @@ const ImageWrapper = styled.div`
   `}
 `
 
-const NavmobileClouds = props => {
+const NavmobileClouds = () => {
   return (
     <ImageWrapper>
       <StaticImage

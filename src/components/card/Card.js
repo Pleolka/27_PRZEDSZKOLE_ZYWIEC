@@ -1,6 +1,5 @@
 import * as React from "react"
-import { Container } from "../../utils/utils"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 //STYLING
 import styled from "styled-components"
 import { theme } from "../../utils/theme"

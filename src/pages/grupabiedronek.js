@@ -1,10 +1,8 @@
-import React, { useState, useMemo } from "react"
+import React, { useState } from "react"
 import { graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
 //STYLOWANIE
 import styled from "styled-components"
 import { theme } from "../utils/theme"
-import { media } from "../utils/mediaquery"
 //COMPONENTS
 import { Container, Heading, Tab, TabMenu, TabWrapper } from "../utils/utils"
 import Seo from "../components/seo/Seo"

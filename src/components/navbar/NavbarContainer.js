@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import { media } from "../../utils/mediaquery"
 //DATA
@@ -11,7 +10,6 @@ import { Container, ContainerMob } from "../../utils/utils"
 //COMPONENTS
 import NavMobile from "./navbarMobile/NavMobile"
 import HamburgerMenuIcon from "./navbarMobile/HamburgerMenuIcon"
-import LogoMobile from "./navbarMobile/LogoMobile"
 import NavmobileClouds from "./navbarMobile/NavmobileClouds"
 import NavbarJezus from "./NavbarJezus"
 

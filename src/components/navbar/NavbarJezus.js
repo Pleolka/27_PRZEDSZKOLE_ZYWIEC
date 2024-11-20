@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import { theme } from "../../utils/theme"
 import { media } from "../../utils/mediaquery"
 import { StaticImage } from "gatsby-plugin-image"
 
