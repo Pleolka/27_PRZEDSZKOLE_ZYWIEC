@@ -38,8 +38,9 @@ const NavbarJezus = () => {
         src="../../assets/images/logo/logo.png"
         alt="Logo"
         layout="fullWidth"
-        quality={80}
+        quality={50}
         placeholder="blurred"
+        width={400}
         loading="eager"
       />
     </NavbarInfo>

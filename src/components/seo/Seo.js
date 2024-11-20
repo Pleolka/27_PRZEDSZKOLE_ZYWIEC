@@ -65,7 +65,7 @@ const Seo = ({
       {/* GOOGLE Verification */}
       <meta
         name="google-site-verification"
-        content="9AZ-eHzeWL6IN9bjC7VWYLJMNpfjCsa50ng5Bsi1blg"
+        content="qKaAGxTlh8WiSmAjdjfwk93DJrWrnWZrZSubs4ACW_s"
       />
 
       {/* FACEBOOK Meta Tags */}
