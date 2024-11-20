@@ -112,7 +112,8 @@ npm install gatsby-plugin-google-fonts --save
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [`Afacad Flux`, `Pacifico`, `Yaldevi`],
-        display: "swap",
+        display: "swap", // Ważne dla lepszej wydajności
+        preconnect: true,
       },
     },
 

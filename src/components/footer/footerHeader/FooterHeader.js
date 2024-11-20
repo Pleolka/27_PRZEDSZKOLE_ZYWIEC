@@ -26,7 +26,9 @@ const FooterHeader = () => {
           src="../../../assets/images/chmury-footer.svg"
           alt="Cloud"
           layout="fullWidth"
-          quality={100}
+          quality={80}
+          loading="lazy"
+          placeholder="tracedSVG"
         />
       </FooterHeaderWrapper>
     </>

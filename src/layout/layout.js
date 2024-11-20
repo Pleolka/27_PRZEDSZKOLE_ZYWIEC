@@ -69,8 +69,3 @@ const Layout = props => {
   )
 }
 export default Layout
-
-export const footer = {
-  heading: "Rośliny dla Twojego ogrodu",
-  subHeading: "Zapraszamy codziennie od 8:00 - 18:00!",
-}

@@ -35,8 +35,9 @@ const NavbarHeader = () => {
         src="../../assets/images/chmury-navbar.svg"
         alt="Cloud"
         layout="fullWidth"
-        quality={100}
-        placeholder="blurred"
+        quality={80}
+        placeholder="tracedSVG"
+        loading="eager"
       />
     </NavbarInfo>
   )

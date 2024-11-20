@@ -37,10 +37,11 @@ const NavbarJezus = () => {
     <NavbarInfo>
       <StaticImage
         src="../../assets/images/logo/logo.png"
-        alt="Cloud"
+        alt="Logo"
         layout="fullWidth"
-        quality={100}
+        quality={80}
         placeholder="blurred"
+        loading="eager"
       />
     </NavbarInfo>
   )
