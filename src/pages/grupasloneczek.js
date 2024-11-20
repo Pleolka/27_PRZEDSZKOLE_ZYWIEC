@@ -12,18 +12,23 @@ export default function Grupasloneczek({ data }) {
   const dydaktyka = data.allContentfulDydaktyka.nodes
 
   return (
-    <Container>
-      <Heading>
-        <h1>Grupa Słoneczek</h1>
-      </Heading>
+    <>
+      <Seo title="Grupa słoneczek" slug="/grupasloneczek" />
+      <Layout>
+        <Container>
+          <Heading>
+            <h1>Grupa Słoneczek</h1>
+          </Heading>
 
-      {/* Mapowanie kart dla każdego miesiąca */}
-      <CardsWrapper>
-        {dydaktyka.map((item, index) => (
-          <DydaktykaCard key={index} item={item} />
-        ))}
-      </CardsWrapper>
-    </Container>
+          {/* Mapowanie kart dla każdego miesiąca */}
+          <CardsWrapper>
+            {dydaktyka.map((item, index) => (
+              <DydaktykaCard key={index} item={item} />
+            ))}
+          </CardsWrapper>
+        </Container>
+      </Layout>
+    </>
   )
 }
 
@@ -57,93 +62,90 @@ const DydaktykaCard = ({ item }) => {
 
   return (
     <>
-      <Seo title="Grupa słoneczek" slug="/grupasloneczek" />
-      <Layout>
-        <CardWrapper>
-          <TabWrapper>
-            <TabMenu>
-              <CardHeader>
-                <h2>{item.miesic}</h2>
-                <p>{item.data}</p>
-              </CardHeader>
+      <CardWrapper>
+        <TabWrapper>
+          <TabMenu>
+            <CardHeader>
+              <h2>{item.miesic}</h2>
+              <p>{item.data}</p>
+            </CardHeader>
+            <li
+              className={activeTab === "tematyka" ? "active" : ""}
+              onClick={() => setActiveTab("tematyka")}
+            >
+              Tematyka
+            </li>
+            <li
+              className={activeTab === "dydaktyka" ? "active" : ""}
+              onClick={() => setActiveTab("dydaktyka")}
+            >
+              Dydaktyka
+            </li>
+            {item.piosenka && (
               <li
-                className={activeTab === "tematyka" ? "active" : ""}
-                onClick={() => setActiveTab("tematyka")}
+                className={activeTab === "piosenka" ? "active" : ""}
+                onClick={() => setActiveTab("piosenka")}
               >
-                Tematyka
+                Piosenka
               </li>
+            )}
+            {item.wiersz && (
               <li
-                className={activeTab === "dydaktyka" ? "active" : ""}
-                onClick={() => setActiveTab("dydaktyka")}
+                className={activeTab === "wiersz" ? "active" : ""}
+                onClick={() => setActiveTab("wiersz")}
               >
-                Dydaktyka
+                Wiersz
               </li>
-              {item.piosenka && (
-                <li
-                  className={activeTab === "piosenka" ? "active" : ""}
-                  onClick={() => setActiveTab("piosenka")}
-                >
-                  Piosenka
-                </li>
-              )}
-              {item.wiersz && (
-                <li
-                  className={activeTab === "wiersz" ? "active" : ""}
-                  onClick={() => setActiveTab("wiersz")}
-                >
-                  Wiersz
-                </li>
-              )}
-              {item.katecheza && (
-                <li
-                  className={activeTab === "katecheza" ? "active" : ""}
-                  onClick={() => setActiveTab("katecheza")}
-                >
-                  Katecheza
-                </li>
-              )}
-            </TabMenu>
+            )}
+            {item.katecheza && (
+              <li
+                className={activeTab === "katecheza" ? "active" : ""}
+                onClick={() => setActiveTab("katecheza")}
+              >
+                Katecheza
+              </li>
+            )}
+          </TabMenu>
 
-            <Tab>
-              {activeTab === "tematyka" && (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: item.tematyka.childMarkdownRemark.html,
-                  }}
-                ></div>
-              )}
-              {activeTab === "dydaktyka" && (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: item.dydaktyka.childMarkdownRemark.html,
-                  }}
-                ></div>
-              )}
-              {activeTab === "piosenka" && item.piosenka && (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: item.piosenka.childMarkdownRemark.html,
-                  }}
-                ></div>
-              )}
-              {activeTab === "wiersz" && item.wiersz && (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: item.wiersz.childMarkdownRemark.html,
-                  }}
-                ></div>
-              )}
-              {activeTab === "katecheza" && item.katecheza && (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: item.katecheza.childMarkdownRemark.html,
-                  }}
-                ></div>
-              )}
-            </Tab>
-          </TabWrapper>
-        </CardWrapper>
-      </Layout>
+          <Tab>
+            {activeTab === "tematyka" && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: item.tematyka.childMarkdownRemark.html,
+                }}
+              ></div>
+            )}
+            {activeTab === "dydaktyka" && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: item.dydaktyka.childMarkdownRemark.html,
+                }}
+              ></div>
+            )}
+            {activeTab === "piosenka" && item.piosenka && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: item.piosenka.childMarkdownRemark.html,
+                }}
+              ></div>
+            )}
+            {activeTab === "wiersz" && item.wiersz && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: item.wiersz.childMarkdownRemark.html,
+                }}
+              ></div>
+            )}
+            {activeTab === "katecheza" && item.katecheza && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: item.katecheza.childMarkdownRemark.html,
+                }}
+              ></div>
+            )}
+          </Tab>
+        </TabWrapper>
+      </CardWrapper>
     </>
   )
 }
