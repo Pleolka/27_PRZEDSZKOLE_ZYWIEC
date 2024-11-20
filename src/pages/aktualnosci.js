@@ -167,6 +167,7 @@ export const query = graphql`
             layout: FULL_WIDTH
             placeholder: BLURRED
             formats: [WEBP]
+            quality: 80
           )
         }
         tytul
@@ -174,7 +175,7 @@ export const query = graphql`
         miniaturka {
           gatsbyImageData(
             resizingBehavior: FILL
-            quality: 100
+            quality: 30
             placeholder: BLURRED
             formats: WEBP
             cropFocus: CENTER

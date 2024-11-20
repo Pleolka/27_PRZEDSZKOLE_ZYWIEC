@@ -86,7 +86,7 @@ export const query = graphql`
           gatsbyImageData(
             aspectRatio: 1
             backgroundColor: "white"
-            quality: 100
+            quality: 20
             placeholder: BLURRED
             layout: FULL_WIDTH
           )

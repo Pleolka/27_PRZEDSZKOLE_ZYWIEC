@@ -54,7 +54,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-styled-components`,
       options: {
-        // Add any options here
+        options: {
+          displayName: process.env.NODE_ENV !== "production", // Pomocne podczas debugowania
+        },
       },
     },
 
