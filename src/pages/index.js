@@ -7,6 +7,7 @@ import { media } from "../utils/mediaquery"
 import { Container, Heading } from "../utils/utils"
 import Card from "../components/card/Card"
 import Seo from "../components/seo/Seo"
+import Layout from "../layout/layout"
 
 const CardWrapper = styled.div`
   margin-top: 3rem;
@@ -29,27 +30,29 @@ export default function Home({ data }) {
   return (
     <div>
       <Seo title="Przedszkole" slug="/" />
-      <Container>
-        <Heading>
-          <h1>Nasze grupy</h1>
-          <p>
-            Zapraszamy do zapoznania się z informacjami o naszych grupach
-            przedszkolnych
-          </p>
-        </Heading>
-        <CardWrapper grupyCount={data.allContentfulGrupy.nodes.length}>
-          {data.allContentfulGrupy.nodes.map(grupa => (
-            <Card
-              key={grupa.nazwa}
-              name={grupa.nazwa}
-              wiek={grupa.wiek}
-              image={grupa.obraz.gatsbyImageData}
-              alt={grupa.obraz.filename}
-              to={`/${grupa.adres}`}
-            />
-          ))}
-        </CardWrapper>
-      </Container>
+      <Layout>
+        <Container>
+          <Heading>
+            <h1>Nasze grupy</h1>
+            <p>
+              Zapraszamy do zapoznania się z informacjami o naszych grupach
+              przedszkolnych
+            </p>
+          </Heading>
+          <CardWrapper grupyCount={data.allContentfulGrupy.nodes.length}>
+            {data.allContentfulGrupy.nodes.map(grupa => (
+              <Card
+                key={grupa.nazwa}
+                name={grupa.nazwa}
+                wiek={grupa.wiek}
+                image={grupa.obraz.gatsbyImageData}
+                alt={grupa.obraz.filename}
+                to={`/${grupa.adres}`}
+              />
+            ))}
+          </CardWrapper>
+        </Container>
+      </Layout>
     </div>
   )
 }
