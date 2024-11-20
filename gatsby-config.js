@@ -73,7 +73,16 @@ module.exports = {
     /* SHARP
    npm install --save gatsby-transformer-sharp gatsby-plugin-sharp
    */
-    "gatsby-plugin-sharp",
+    {
+      resolve: "gatsby-plugin-sharp",
+      options: {
+        failOnError: true,
+        stripMetadata: true,
+        defaultQuality: 50,
+        cache: false,
+        concurrency: 2, // Ogranicz liczbę jednoczesnych procesów
+      },
+    },
     `gatsby-transformer-sharp`,
 
     /* GATSBY FILE SYSTEM 
