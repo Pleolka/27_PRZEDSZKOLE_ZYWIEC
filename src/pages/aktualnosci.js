@@ -133,7 +133,7 @@ export default function Aktualnosci({ data }) {
                 />
               )}
 
-              {aktualnosc.youTubeLink && (
+              {/* {aktualnosc.youTubeLink && (
                 <Film>
                   <iframe
                     src={aktualnosc.youTubeLink.replace(
@@ -146,7 +146,7 @@ export default function Aktualnosci({ data }) {
                     allowFullScreen
                   />
                 </Film>
-              )}
+              )} */}
             </Aktualnosc>
           ))}
         </Container>
@@ -174,7 +174,7 @@ export const query = graphql`
           )
         }
         tytul
-        youTubeLink
+
         miniaturka {
           gatsbyImageData(
             resizingBehavior: FILL
