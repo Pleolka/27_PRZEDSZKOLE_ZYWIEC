@@ -38,17 +38,21 @@ const GaleriaCard = styled.a`
   padding: 2rem;
   border: 1px solid ${theme.color.base};
   border-radius: 20px;
+  overflow: hidden;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
 
   h5 {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
   }
 
   &:hover {
     background-color: ${theme.color.baseLight};
   }
+`
+const MyImage = styled.div`
+  margin: -2rem;
 `
 
 export default function Galeria({ data }) {
@@ -65,11 +69,13 @@ export default function Galeria({ data }) {
             {data.allContentfulGaleria.nodes.map(galeria => (
               <GaleriaCard key={galeria.tytul} href={galeria.linkDoGalerii}>
                 <h5>{galeria.tytul}</h5>
-                <GatsbyImage
-                  image={galeria.zdjecie.gatsbyImageData}
-                  alt={galeria.tytul}
-                  objectFit="contain"
-                />
+                <MyImage>
+                  <GatsbyImage
+                    image={galeria.zdjecie.gatsbyImageData}
+                    alt={galeria.tytul}
+                    objectFit="contain"
+                  />
+                </MyImage>
               </GaleriaCard>
             ))}
           </GaleriaWrapper>
@@ -88,12 +94,14 @@ export const query = graphql`
         zdjecie {
           gatsbyImageData(
             aspectRatio: 1
+            resizingBehavior: FILL
+            cropFocus: CENTER
             backgroundColor: "white"
-            layout: CONSTRAINED
+            layout: FULL_WIDTH
             placeholder: BLURRED
             formats: [AUTO, WEBP]
             quality: 20
-            width: 300
+            width: 700
           )
         }
       }
