@@ -205,6 +205,8 @@ export const query = graphql`
           gatsbyImageData(
             aspectRatio: 1
             backgroundColor: "white"
+            resizingBehavior: FILL
+            cropFocus: CENTER
             layout: CONSTRAINED
             placeholder: BLURRED
             formats: [AUTO, WEBP]
