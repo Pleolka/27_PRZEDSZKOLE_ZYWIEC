@@ -106,7 +106,7 @@ export const Heading = styled.div`
   }
   p {
     margin-top: 0.5rem;
-    font-weight: 100;
+    font-weight: ${theme.font.weight};
     max-width: 500px;
     //font-size: 18px;
   }

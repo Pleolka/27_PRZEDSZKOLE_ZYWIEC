@@ -31,7 +31,7 @@ export const color = {
   baseLight: "#CFF1F3",
   baseDark: "#00375c",
 
-  secondary: "#35A6B4",
+  secondary: "#ed5f00",
   secondaryLight: "",
   secondaryDark: "",
 

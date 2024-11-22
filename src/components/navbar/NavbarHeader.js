@@ -30,7 +30,7 @@ const NavbarInfo = styled.div`
 const NavbarHeader = () => {
   return (
     <NavbarInfo>
-      <p>Przedszkole sióstr serafitek w Żywcu</p>
+      <p>Przedszkole Sióstr Serafitek w Żywcu</p>
       <StaticImage
         src="../../assets/images/chmury-navbar.svg"
         alt="Cloud"

@@ -91,7 +91,7 @@ const NavbarItem = styled(Link)`
   background-color: transparent;
   //font-size: 20px;
   font-family: ${theme.font.main};
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.1;
   transition: all 0.5s ease-in-out;
 

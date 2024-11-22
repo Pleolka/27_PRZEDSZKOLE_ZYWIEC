@@ -74,6 +74,10 @@ const ZajeciaDodatkowe = styled.div`
     text-align: center;
   }
 
+  p:nth-of-type(1) {
+    color: ${theme.color.secondary};
+  }
+
   ul {
     margin-top: 1rem;
     li {
@@ -82,18 +86,92 @@ const ZajeciaDodatkowe = styled.div`
   }
 `
 
+const OsiagnieciaWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap; /* Pozwala na zawijanie zdjęć do nowych wierszy */
+  gap: 1rem; /* Odstępy między zdjęciami */
+  justify-content: space-between; /* Równe rozmieszczenie zdjęć */
+  padding: 1rem; /* Opcjonalne wypełnienie */
+`
+
+const FotoWrapper = styled.div`
+  flex: 0 0 auto; /* Dynamiczna szerokość zgodna z proporcjami */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    height: auto;
+    max-height: 200px; /* Wysokość dostosowuje się do szerokości */
+    width: 100%; /* Zdjęcie wypełnia szerokość kontenera */
+    object-fit: contain; /* Zachowanie proporcji bez przycinania */
+  }
+`
+
 export default function Onas({ data }) {
   const plan = data.allContentfulPlanDnia.nodes[0].opis.childMarkdownRemark.html
   const zajecia = data.allContentfulZajecieDodatkowe.nodes
   const personel = data.allContentfulPersonel.nodes
+  const oPrzedszkolu = data.allContentfulOPrzedszkolu.nodes[0]
+  const osiagniecia = data.allContentfulOsiagniecia.nodes[0]
+  const czegoUczymy = data.allContentfulCzegoUczymy.nodes[0]
 
   // Stan do zarządzania aktywną zakładką
   const [activeTab, setActiveTab] = useState(0)
 
   // Pre-renderowanie zawartości w celu optymalizacji
+  const processHtml = html => {
+    return html.replace(/(.*?—)/g, "<strong>$1</strong>")
+  }
+
   const renderPlan = useMemo(() => {
-    return <div dangerouslySetInnerHTML={{ __html: plan }}></div>
+    // Przetworzenie HTML, aby pogrubić tekst do znaku "—"
+    const processedPlan = processHtml(plan)
+    return (
+      <div
+        dangerouslySetInnerHTML={{
+          __html: processedPlan,
+        }}
+      ></div>
+    )
   }, [plan])
+
+  const renderOPrzedszkolu = useMemo(() => {
+    return (
+      <div
+        dangerouslySetInnerHTML={{
+          __html: oPrzedszkolu.opis.childMarkdownRemark.html,
+        }}
+      ></div>
+    )
+  }, [oPrzedszkolu])
+
+  const renderCzegoUczymy = useMemo(() => {
+    return (
+      <div
+        dangerouslySetInnerHTML={{
+          __html: czegoUczymy.opis.childMarkdownRemark.html,
+        }}
+      ></div>
+    )
+  }, [zajecia])
+
+  const renderOsiagniecia = useMemo(() => {
+    return osiagniecia.zdjecia.map((osiagniecie, index) => (
+      <FotoWrapper key={index}>
+        <GatsbyImage
+          image={osiagniecie.gatsbyImageData}
+          alt={`Zdjęcie osiągnięcia ${index + 1}`}
+          imgStyle={{
+            objectFit: "contain", // Zachowanie proporcji
+            height: "auto",
+            width: "auto",
+          }}
+        />
+      </FotoWrapper>
+    ))
+  }, [osiagniecia])
 
   const renderZajecia = useMemo(() => {
     return zajecia.map(zajecie => (
@@ -102,7 +180,17 @@ export default function Onas({ data }) {
         <p>{zajecie.prowadzcy}</p>
         <ul>
           {zajecie.godzinyIGrupy.map(godzina => (
-            <li key={godzina}>{godzina}</li>
+            <li key={godzina}>
+              {godzina
+                .split(":")
+                .map((part, index) =>
+                  index === 0 ? (
+                    <strong key={index}>{part}:</strong>
+                  ) : (
+                    <span key={index}>{part}</span>
+                  )
+                )}
+            </li>
           ))}
         </ul>
       </ZajeciaDodatkowe>
@@ -142,33 +230,62 @@ export default function Onas({ data }) {
                 onClick={() => setActiveTab(0)}
                 className={activeTab === 0 ? "active" : ""}
               >
-                Plan dnia
+                O przedszkolu
               </li>
+
               <li
                 onClick={() => setActiveTab(1)}
                 className={activeTab === 1 ? "active" : ""}
               >
-                Zajęcia dodatkowe
+                Plan dnia
               </li>
               <li
                 onClick={() => setActiveTab(2)}
                 className={activeTab === 2 ? "active" : ""}
               >
+                Zajęcia dodatkowe
+              </li>
+              <li
+                onClick={() => setActiveTab(3)}
+                className={activeTab === 3 ? "active" : ""}
+              >
                 Personel
+              </li>
+
+              <li
+                onClick={() => setActiveTab(4)}
+                className={activeTab === 4 ? "active" : ""}
+              >
+                Czego uczymy
+              </li>
+
+              <li
+                onClick={() => setActiveTab(5)}
+                className={activeTab === 5 ? "active" : ""}
+              >
+                Osiągnięcia i sukcesy
               </li>
             </TabMenu>
             {/* Zawartość wybranej zakładki */}
             <Tab>
-              {activeTab === 0 && renderPlan}
+              {activeTab === 0 && renderOPrzedszkolu}
 
-              {activeTab === 1 && (
+              {activeTab === 1 && renderPlan}
+
+              {activeTab === 2 && (
                 <ZajeciaDodatkoweWrapper>
                   {renderZajecia}
                 </ZajeciaDodatkoweWrapper>
               )}
 
-              {activeTab === 2 && (
+              {activeTab === 3 && (
                 <PersonelWrapper>{renderPersonel}</PersonelWrapper>
+              )}
+
+              {activeTab === 4 && renderCzegoUczymy}
+
+              {activeTab === 5 && (
+                <OsiagnieciaWrapper>{renderOsiagniecia}</OsiagnieciaWrapper>
               )}
             </Tab>
           </TabWrapper>
@@ -212,6 +329,40 @@ export const query = graphql`
             formats: [AUTO, WEBP]
             quality: 20
             width: 450
+          )
+        }
+      }
+    }
+    allContentfulOPrzedszkolu {
+      nodes {
+        tytul
+        opis {
+          childMarkdownRemark {
+            html
+          }
+        }
+      }
+    }
+    allContentfulCzegoUczymy {
+      nodes {
+        tytul
+        opis {
+          childMarkdownRemark {
+            html
+          }
+        }
+      }
+    }
+    allContentfulOsiagniecia {
+      nodes {
+        tytul
+        zdjecia {
+          gatsbyImageData(
+            backgroundColor: "white"
+            layout: CONSTRAINED
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+            quality: 20
           )
         }
       }

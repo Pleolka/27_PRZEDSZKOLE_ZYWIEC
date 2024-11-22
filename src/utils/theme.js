@@ -14,11 +14,11 @@ export const theme = {
   // },
 
   font: {
-    main: "Yaldevi",
+    main: "Barlow",
     header: "Pacifico",
     special: "Pacifico",
 
-    weight: 300,
+    weight: 400,
     weightBold: 700,
     weightH: 100,
 
@@ -27,10 +27,10 @@ export const theme = {
     size: {
       p: {
         xs: "16px",
-        s: "16px",
-        m: "18px",
-        l: "20px",
-        xl: "22px",
+        s: "18px",
+        m: "20px",
+        l: "22px",
+        xl: "24px",
       },
 
       l: {
