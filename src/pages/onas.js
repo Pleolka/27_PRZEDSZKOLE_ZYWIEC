@@ -100,12 +100,43 @@ const FotoWrapper = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  cursor: pointer;
 
   img {
     height: auto;
     max-height: 200px; /* Wysokość dostosowuje się do szerokości */
     width: 100%; /* Zdjęcie wypełnia szerokość kontenera */
     object-fit: contain; /* Zachowanie proporcji bez przycinania */
+  }
+`
+
+const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  .modal-image {
+    max-width: 70%;
+    max-height: 70%;
+    object-fit: contain;
   }
 `
 
@@ -119,6 +150,17 @@ export default function Onas({ data }) {
 
   // Stan do zarządzania aktywną zakładką
   const [activeTab, setActiveTab] = useState(0)
+  const [activeImage, setActiveImage] = useState(null) // Przechowuje aktywne zdjęcie
+
+  // Funkcja otwierająca modal z wybranym zdjęciem
+  const openModal = image => {
+    setActiveImage(image)
+  }
+
+  // Funkcja zamykająca modal
+  const closeModal = () => {
+    setActiveImage(null)
+  }
 
   // Pre-renderowanie zawartości w celu optymalizacji
   const processHtml = html => {
@@ -159,15 +201,13 @@ export default function Onas({ data }) {
 
   const renderOsiagniecia = useMemo(() => {
     return osiagniecia.zdjecia.map((osiagniecie, index) => (
-      <FotoWrapper key={index}>
+      <FotoWrapper
+        key={index}
+        onClick={() => openModal(osiagniecie.gatsbyImageData)}
+      >
         <GatsbyImage
           image={osiagniecie.gatsbyImageData}
           alt={`Zdjęcie osiągnięcia ${index + 1}`}
-          imgStyle={{
-            objectFit: "contain", // Zachowanie proporcji
-            height: "auto",
-            width: "auto",
-          }}
         />
       </FotoWrapper>
     ))
@@ -223,6 +263,19 @@ export default function Onas({ data }) {
             <h1>O nas</h1>
             <p>Garść informacji o personelu i historii</p>
           </Heading>
+          {/* Modal wyświetlający powiększone zdjęcie */}
+          {activeImage && (
+            <Modal>
+              <button className="close-button" onClick={closeModal}>
+                &times;
+              </button>
+              <GatsbyImage
+                image={activeImage}
+                alt="Powiększone zdjęcie"
+                className="modal-image"
+              />
+            </Modal>
+          )}
           <TabWrapper>
             {/* Menu zakładek */}
             <TabMenu>
@@ -314,7 +367,7 @@ export const query = graphql`
         godzinyIGrupy
       }
     }
-    allContentfulPersonel {
+    allContentfulPersonel(sort: { createdAt: ASC }) {
       nodes {
         imie
         stanowisko
@@ -327,7 +380,7 @@ export const query = graphql`
             layout: CONSTRAINED
             placeholder: BLURRED
             formats: [AUTO, WEBP]
-            quality: 20
+            quality: 50
             width: 450
           )
         }

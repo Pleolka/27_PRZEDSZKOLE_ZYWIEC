@@ -59,7 +59,7 @@ export default function Home({ data }) {
 
 export const query = graphql`
   query HomePageQuery {
-    allContentfulGrupy {
+    allContentfulGrupy(sort: { id: DESC }) {
       nodes {
         nazwa
         wiek

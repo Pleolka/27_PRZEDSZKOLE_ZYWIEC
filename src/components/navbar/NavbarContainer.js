@@ -21,7 +21,7 @@ const Nav = styled.nav`
   position: fixed;
   margin-top: 0px;
   top: 80px;
-  z-index: 20;
+  z-index: 15;
   height: ${`${navbarHeight}px`};
   width: 100%;
   transition: all 0.2s;
