@@ -217,7 +217,7 @@ function Navbar() {
         ) : (
           <>
             <NavMolileText>
-              <h6>Przedszkole Soóstr Serafitek</h6>
+              <h6>Przedszkole Sióstr Serafitek</h6>
             </NavMolileText>
 
             <NavMobile></NavMobile>

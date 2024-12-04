@@ -91,7 +91,7 @@ export default function Galeria({ data }) {
 
 export const query = graphql`
   query GaleriaPageQuery {
-    allContentfulGaleria(sort: { data: DESC }) {
+    allContentfulGaleria(sort: { data: DESC }, limit: 30) {
       nodes {
         tytul
         linkDoGalerii
