@@ -6,6 +6,7 @@ import { Container, Heading } from "../utils/utils"
 import { theme } from "../utils/theme"
 import Seo from "../components/seo/Seo"
 import Layout from "../layout/layout"
+import Paginacja from "../components/paginacja/Paginacja"
 
 const Aktualnosc = styled.div`
   margin-top: 2rem;
@@ -65,22 +66,30 @@ const Title = styled.div`
   }
 `
 
-const Film = styled.div`
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
-  height: 0;
-
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-`
-
 export default function Aktualnosci({ data }) {
+  const itemsPerPage = 8
+  const [currentPage, setCurrentPage] = React.useState(0)
+
+  const totalItems = data.allContentfulAktualnosc.nodes.length
+  const totalPages = Math.ceil(totalItems / itemsPerPage)
+
+  const currentItems = data.allContentfulAktualnosc.nodes.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
+  )
+
+  const handleNext = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1)
+    }
+  }
+
+  const handlePrevious = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1)
+    }
+  }
+
   return (
     <>
       <Seo title="Aktualności" slug="/aktualnosci" />
@@ -91,7 +100,7 @@ export default function Aktualnosci({ data }) {
             <p>Najnowsze informacje o wydarzeniach z naszego przedszkola</p>
           </Heading>
 
-          {data.allContentfulAktualnosc.nodes.map(aktualnosc => (
+          {currentItems.map(aktualnosc => (
             <Aktualnosc key={aktualnosc.tytul}>
               <Main>
                 <ImageWrapper>
@@ -132,23 +141,15 @@ export default function Aktualnosci({ data }) {
                   alt={aktualnosc.plakat.filename}
                 />
               )}
-
-              {/* {aktualnosc.youTubeLink && (
-                <Film>
-                  <iframe
-                    src={aktualnosc.youTubeLink.replace(
-                      "https://youtu.be/",
-                      "https://www.youtube.com/embed/"
-                    )}
-                    title={aktualnosc.tytul}
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    frameBorder="0"
-                    allowFullScreen
-                  />
-                </Film>
-              )} */}
             </Aktualnosc>
           ))}
+
+          <Paginacja
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPrevious={handlePrevious}
+            onNext={handleNext}
+          />
         </Container>
       </Layout>
     </>
@@ -157,7 +158,7 @@ export default function Aktualnosci({ data }) {
 
 export const query = graphql`
   query AktualnosciPageQuery {
-    allContentfulAktualnosc(sort: { dataDodania: DESC }, limit: 30) {
+    allContentfulAktualnosc(sort: { dataDodania: DESC }) {
       nodes {
         tekst {
           childMarkdownRemark {

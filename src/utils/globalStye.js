@@ -203,13 +203,26 @@ button {
     background: ${({ theme }) => theme.color.base1};
     color: ${({ theme }) => theme.color.white};
     font-family: ${({ theme }) => theme.font.main};
-    font-size: 1rem;
+    font-size: ${({ theme }) => theme.font.size.p};
     cursor: pointer;
     text-align: center;
     transition: background 250ms ease-in-out,
         transform 150ms ease;
     -webkit-appearance: none;
     -moz-appearance: none;
+    font-size: ${theme.font.size.p.l};
+  
+    ${media.lessThan("large")`
+    font-size: ${theme.font.size.p.m};
+  `}
+
+  ${media.lessThan("medium")`
+  font-size: ${theme.font.size.p.s};
+  `}
+
+  ${media.lessThan("small")`
+  font-size: ${theme.font.size.p.sx};
+  `}
 
     :hover {
         background-color: ${({ theme }) => theme.color.sec1};

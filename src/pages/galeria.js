@@ -2,12 +2,13 @@ import * as React from "react"
 import { Container, Heading } from "../utils/utils"
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-//STYLING
+// STYLING
 import { styled } from "styled-components"
 import { theme } from "../utils/theme"
 import { media } from "../utils/mediaquery"
 import Seo from "../components/seo/Seo"
 import Layout from "../layout/layout"
+import Paginacja from "../components/paginacja/Paginacja"
 
 const GaleriaWrapper = styled.div`
   margin-top: 3rem;
@@ -51,11 +52,35 @@ const GaleriaCard = styled.a`
     background-color: ${theme.color.baseLight};
   }
 `
+
 const MyImage = styled.div`
   margin: -2rem;
 `
 
 export default function Galeria({ data }) {
+  const itemsPerPage = 12
+  const [currentPage, setCurrentPage] = React.useState(0)
+
+  const totalItems = data.allContentfulGaleria.nodes.length
+  const totalPages = Math.ceil(totalItems / itemsPerPage)
+
+  const currentItems = data.allContentfulGaleria.nodes.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
+  )
+
+  const handleNext = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1)
+    }
+  }
+
+  const handlePrevious = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1)
+    }
+  }
+
   return (
     <>
       <Seo title="Galeria" slug="/galeria" />
@@ -66,7 +91,7 @@ export default function Galeria({ data }) {
             <p>Zawsze najnowsze zdjęcia naszych przedszkolaków</p>
           </Heading>
           <GaleriaWrapper>
-            {data.allContentfulGaleria.nodes.map(galeria => (
+            {currentItems.map(galeria => (
               <GaleriaCard
                 key={galeria.tytul}
                 href={galeria.linkDoGalerii}
@@ -83,6 +108,12 @@ export default function Galeria({ data }) {
               </GaleriaCard>
             ))}
           </GaleriaWrapper>
+          <Paginacja
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPrevious={handlePrevious}
+            onNext={handleNext}
+          />
         </Container>
       </Layout>
     </>
@@ -91,7 +122,7 @@ export default function Galeria({ data }) {
 
 export const query = graphql`
   query GaleriaPageQuery {
-    allContentfulGaleria(sort: { data: DESC }, limit: 30) {
+    allContentfulGaleria(sort: { data: DESC }) {
       nodes {
         tytul
         linkDoGalerii
